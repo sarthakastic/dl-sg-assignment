@@ -1,0 +1,9 @@
+.contentContainer {
+  min-height: calc(100dvh - 4.56rem);
+}
+
+@media screen and (max-width: 767.98px) {
+  .contentContainer {
+    min-height: calc(100dvh - 3.75rem);
+  }
+}
