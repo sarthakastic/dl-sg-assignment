@@ -3,6 +3,7 @@ import { ReactNode } from 'react';
 import styles from './Layout.module.css';
 import Header from '../../Header';
 import BottomBar from '../../BottomBar';
+import MainContent from './MainContent';
 
 type Props = {
   children: ReactNode;
@@ -13,8 +14,8 @@ const Layout = (props: Props) => {
     <div>
       <Header />
       <div className={styles.contentContainer}>
-        {props?.children}
-        <BottomBar />
+        <MainContent>{props?.children}</MainContent>
+        {/* <BottomBar /> */}
       </div>
     </div>
   );

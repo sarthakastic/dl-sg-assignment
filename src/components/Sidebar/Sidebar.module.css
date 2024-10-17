@@ -1,0 +1,42 @@
+.sidebarContainer {
+}
+
+.tabLink {
+  width: 12.5rem;
+  height: 2.9rem;
+  color: var(--secondary-color);
+  text-decoration: none;
+  list-style-type: none;
+  font-weight: 700;
+  font-size: 22px;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.tabLink:hover {
+  cursor: pointer;
+  color: var(--secondary-color);
+  border-left: 4px solid var(--secondary-color);
+}
+
+.grayTab {
+  color: var(--background-dark);
+}
+
+.activeTab {
+  color: var(--primary-color);
+  border-left: 4px solid var(--primary-color);
+}
+
+.activeTab:hover {
+  color: var(--primary-color);
+  border-left: 4px solid var(--primary-color);
+}
+
+@media screen and (max-width: 767.98px) {
+  .sidebarContainer {
+    display: none;
+  }
+}

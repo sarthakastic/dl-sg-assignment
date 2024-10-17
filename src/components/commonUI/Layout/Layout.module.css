@@ -2,8 +2,16 @@
   min-height: calc(100dvh - 4.56rem);
 }
 
+.mainContentContainer {
+  height: calc(100dvh - 4.56rem - 6.25rem);
+  display: flex;
+}
+
 @media screen and (max-width: 767.98px) {
   .contentContainer {
     min-height: calc(100dvh - 3.75rem);
+  }
+  .mainContentContainer {
+    height: calc(100dvh - 3.75rem - 4rem);
   }
 }

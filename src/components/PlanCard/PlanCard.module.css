@@ -1,0 +1,19 @@
+.planCardContainer {
+  background-color: var(--text-light);
+  border: 1px solid var(--background-medium);
+  border-radius: 8px;
+  height: 11rem;
+  width: 18.2rem;
+  padding: 0.9rem;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.planCardContainer:hover {
+  border-color: var(--background-dark);
+}
+
+.selected {
+  background-color: #ffcccc; /* Light red background */
+  border: 2px solid red; /* Red border */
+}
