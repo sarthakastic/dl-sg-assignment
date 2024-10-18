@@ -1,18 +1,29 @@
 .deviceCard {
   background-color: #ffffff;
-
+  box-sizing: border-box;
   width: 100%;
   max-height: fit-content;
+  padding: 0;
+}
+
+.defaultInputGroup {
+  display: flex;
+  gap: 1.25rem;
 }
 
 .title {
-  font-size: 1.2rem;
-  margin-bottom: 12px;
-  color: #333;
+  font-size: 1.375rem;
+  font-weight: 500;
+  color: var(--text-dark);
 }
 
 .inputGroup {
+  /* width: 50%; */
   margin-bottom: 16px;
+}
+
+.section {
+  max-width: 50%;
 }
 
 .inputGroup label {
@@ -23,9 +34,20 @@
   font-size: 0.9rem;
 }
 
-.inputGroup input[type='text'],
+.inputGroup input[type='text'] {
+  width: 28.125rem;
+  max-width: 100%;
+  height: 3.375rem;
+  padding: 0 0.9rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  box-sizing: border-box;
+}
+
 .inputGroup input[type='file'] {
-  width: 100%;
+  width: 20.9375rem;
+  height: 10rem;
   padding: 8px;
   border: 1px solid #ddd;
   border-radius: 4px;
@@ -48,8 +70,8 @@
 .switch {
   position: relative;
   display: inline-block;
-  width: 48px;
-  height: 24px;
+  width: 2.25rem;
+  height: 1.125rem;
 }
 
 .switch input {
@@ -67,16 +89,16 @@
   bottom: 0;
   background-color: var(--background-medium);
   transition: 0.4s;
-  border-radius: 24px;
+  border-radius: 10px;
 }
 
 .slider:before {
   position: absolute;
   content: '';
-  height: 20px;
-  width: 20px;
-  left: 2px;
-  bottom: 2px;
+  height: 16px;
+  width: 16px;
+  left: 1px;
+  bottom: 1px;
   background-color: white;
   transition: 0.4s;
   border-radius: 50%;
@@ -87,13 +109,18 @@ input:checked + .slider {
 }
 
 input:checked + .slider:before {
-  transform: translateX(24px);
+  transform: translateX(18px);
+}
+
+.byodGroup {
+  display: flex;
+  gap: 1.25rem;
 }
 
 .toggleDescription {
-  font-size: 0.8rem;
-  color: #666;
-  margin-top: 4px;
+  font-size: 1rem;
+  color: var(--text-dark);
+  margin-top: 0.9rem;
 }
 
 .fileName {
@@ -103,9 +130,12 @@ input:checked + .slider:before {
 }
 
 .uploadButton {
-  display: inline-block;
-  height: 10rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
+  height: 10rem;
+  width: 100%;
   background-color: var(--text-light);
   border: 1px solid var(--background-medium);
   border-radius: 4px;
@@ -116,15 +146,21 @@ input:checked + .slider:before {
   text-decoration: underline;
 }
 
+@media (max-width: 1200px) {
+  .byodGroup,
+  .defaultInputGroup {
+    flex-direction: column;
+  }
+
+  .section {
+    max-width: 100%;
+  }
+  .inputGroup input[type='text'] {
+    width: 100%;
+  }
+}
+
 @media (min-width: 768px) {
-  .deviceCard {
-    padding: 24px;
-  }
-
-  .title {
-    font-size: 1.5rem;
-  }
-
   .inputGroup label,
   .inputGroup input[type='text'],
   .inputGroup input[type='file'],

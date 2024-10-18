@@ -1,6 +1,6 @@
 .deviceContainer {
   height: fit-content;
-  background-color: white;
+  /* background-color: white; */
   border: 1px solid var(--background-medium);
   border-radius: 8px;
   padding: 1.4375rem 2.5rem;

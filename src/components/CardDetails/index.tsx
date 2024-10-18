@@ -1,4 +1,3 @@
-// CardDetails.tsx
 import React, { useState } from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
@@ -67,7 +66,6 @@ const CardDetails: React.FC<CardDetailsProps> = ({ onSubmit }) => {
 
   return (
     <form onSubmit={formik.handleSubmit} className={styles.form}>
-      <h2 className={styles.title}>Add card details</h2>
       <div className={styles.inputContainer}>
         <input
           type="text"
@@ -84,32 +82,32 @@ const CardDetails: React.FC<CardDetailsProps> = ({ onSubmit }) => {
           onFocus={() => handleFocus('cardNumber')}
           onBlur={handleBlur}
         />
-        <div className={styles.expiryAndCvc}>
-          <input
-            type="text"
-            id="expiry"
-            placeholder="MM/YY"
-            className={`${styles.input} ${styles.expiry} ${
-              focused === 'expiry' ? styles.focused : ''
-            }`}
-            value={formik.values.expiry}
-            onChange={formik.handleChange}
-            onFocus={() => handleFocus('expiry')}
-            onBlur={handleBlur}
-          />
-          <input
-            type="text"
-            id="cvc"
-            placeholder="CVC"
-            className={`${styles.input} ${styles.cvc} ${
-              focused === 'cvc' ? styles.focused : ''
-            }`}
-            value={formik.values.cvc}
-            onChange={formik.handleChange}
-            onFocus={() => handleFocus('cvc')}
-            onBlur={handleBlur}
-          />
-        </div>
+        {/* <div className={styles.expiryAndCvc}> */}
+        <input
+          type="text"
+          id="expiry"
+          placeholder="MM/YY"
+          className={`${styles.input} ${styles.expiry} ${
+            focused === 'expiry' ? styles.focused : ''
+          }`}
+          value={formik.values.expiry}
+          onChange={formik.handleChange}
+          onFocus={() => handleFocus('expiry')}
+          onBlur={handleBlur}
+        />
+        <input
+          type="text"
+          id="cvc"
+          placeholder="CVC"
+          className={`${styles.input} ${styles.cvc} ${
+            focused === 'cvc' ? styles.focused : ''
+          }`}
+          value={formik.values.cvc}
+          onChange={formik.handleChange}
+          onFocus={() => handleFocus('cvc')}
+          onBlur={handleBlur}
+        />
+        {/* </div> */}
       </div>
       {(formik.errors.cardNumber && formik.touched.cardNumber) ||
       (formik.errors.expiry && formik.touched.expiry) ||

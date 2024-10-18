@@ -3,6 +3,7 @@ import style from './Sidebar.module.css';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../redux/store';
 import pathToTabName from '../../utils/helper/pathToTabName';
+import { TickIcon } from '../../assets/icons/svgs';
 
 const Sidebar = () => {
   const navigate = useNavigate();
@@ -28,6 +29,7 @@ const Sidebar = () => {
               `}
             >
               {pathToTabName(data?.path)}
+              {data?.completionStatus && <TickIcon />}
             </li>
           );
         })}

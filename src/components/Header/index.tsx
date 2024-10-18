@@ -35,7 +35,6 @@ export default function Header() {
           sidebarActive ? styles['navLinkCollapseActive'] : ''
         }`}
       >
-        {/* <div className={styles.navList}> */}
         <NavLink to="/learn-more" className={styles.navLinkItem}>
           Learn more
         </NavLink>
@@ -45,7 +44,6 @@ export default function Header() {
         <NavLink to="/inbox" className={styles.navLinkItem}>
           Inbox
         </NavLink>
-        {/* </div> */}
       </div>
 
       <div className={styles.navItemContainer}>

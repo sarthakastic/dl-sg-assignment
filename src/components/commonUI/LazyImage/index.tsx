@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef, ImgHTMLAttributes } from 'react';
 
-// Props definition using ImgHTMLAttributes for flexibility
 interface OptimizedImageProps extends ImgHTMLAttributes<HTMLImageElement> {
   src: string;
   alt: string;
@@ -8,13 +7,12 @@ interface OptimizedImageProps extends ImgHTMLAttributes<HTMLImageElement> {
   height?: number | string;
 }
 
-// Lazy-loaded image using Intersection Observer API
 const LazyImage: React.FC<OptimizedImageProps> = ({
   src,
   alt,
   width,
   height,
-  loading = 'lazy', // Default to lazy loading
+  loading = 'lazy',
   ...props
 }) => {
   const [isVisible, setIsVisible] = useState(false);

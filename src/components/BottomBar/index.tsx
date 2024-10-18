@@ -1,10 +1,10 @@
 import Button from '../commonUI/Button';
 import styles from './BottomBar.module.css';
 
-const BottomBar = () => {
+const BottomBar = ({ disabled }: { disabled?: boolean }) => {
   return (
     <div className={styles.bottomBarContainer}>
-      <Button>Next</Button>
+      <Button disabled={disabled}>Next</Button>
     </div>
   );
 };

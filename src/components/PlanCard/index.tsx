@@ -1,4 +1,3 @@
-// src/components/PlanCard.tsx
 import { Plan } from '../../utils/constants/plan';
 import style from './PlanCard.module.css';
 
@@ -16,11 +15,21 @@ const PlanCard = ({ planInfo, isSelected, onSelect }: PlanCardProps) => {
       }`}
       onClick={onSelect}
     >
-      <p>{planInfo.title}</p>
+      <p className={style.title}>{planInfo.title}</p>
       {planInfo.description.map((desc, index) => (
-        <p key={index}>{desc}</p>
+        <p className={style.description} key={index}>
+          <img src={desc?.icon} alt="" /> <span>{desc?.text}</span>
+        </p>
       ))}
-      <p>{`$${planInfo.price}`}</p>
+      <p className={style.price}>
+        {' '}
+        <span className={style.priceAmount}>
+          {planInfo.price === 0 ? 'Free' : '$' + planInfo.price}
+          {planInfo.price !== 0 && (
+            <span className={style.duration}>/month</span>
+          )}
+        </span>{' '}
+      </p>
     </div>
   );
 };

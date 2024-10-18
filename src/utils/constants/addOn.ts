@@ -26,6 +26,6 @@ export const addOn: AddOn[] = [
     title: 'Between trip insurance',
     price: 10,
     suggestion: ['Best mates'],
-    isActive: true,
+    isActive: false,
   },
 ];

@@ -37,18 +37,19 @@
 
 .navLinkCollapse {
   width: 100%;
-  max-width: 17.5rem;
-  height: calc(100dvh - 3.75rem);
+  max-width: 12.5rem;
+  height: calc(100dvh);
   background-color: var(--link-color);
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
   overflow-y: auto;
-  padding: 1rem 0 0 3rem;
+  padding: 3.75rem 0 0 3rem;
   position: fixed;
-  top: 3.75rem;
+  top: 0;
   left: -100%;
+  z-index: -1;
   transition: 200ms all ease-in-out;
 }
 
@@ -136,6 +137,10 @@
 
   .headerContainer {
     height: 3.75rem;
+    position: sticky;
+    top: 0;
+    left: 0;
+    right: 0;
   }
 }
 @media screen and (min-width: 767.98px) {

@@ -24,35 +24,38 @@ const DeviceCard: React.FC<DeviceCardProps> = ({ deviceNumber }) => {
   return (
     <div className={styles.deviceCard}>
       <h2 className={styles.title}>Device {deviceNumber}</h2>
-
-      <div className={styles.inputGroup}>
-        <label htmlFor={`deviceType-${deviceNumber}`}>Device type</label>
-        <input
-          id={`deviceType-${deviceNumber}`}
-          type="text"
-          value={deviceType}
-          onChange={(e) => setDeviceType(e.target.value)}
-          placeholder="Enter the device type"
-        />
-      </div>
-
-      <div className={styles.toggleGroup}>
-        <div className={styles.toggleHeader}>
-          <span>Bringing your own device?</span>
-          <label className={styles.switch}>
-            <input type="checkbox" checked={isBYOD} onChange={handleToggle} />
-            <span className={styles.slider}></span>
-          </label>
+      <div className={styles.defaultInputGroup}>
+        <div className={`${styles.inputGroup} ${styles.section}`}>
+          <label htmlFor={`deviceType-${deviceNumber}`}>Device type</label>
+          <input
+            id={`deviceType-${deviceNumber}`}
+            type="text"
+            value={deviceType}
+            onChange={(e) => setDeviceType(e.target.value)}
+            placeholder="Enter the device type"
+            className={styles.inputField}
+          />
         </div>
-        <p className={styles.toggleDescription}>
-          Toggle this on if you're bringing your own device. Leave it off if
-          Drive mate is to provide the device.
-        </p>
-      </div>
 
+        <div className={styles.section}>
+          <div className={styles.toggleHeader}>
+            <span>Bringing your own device?</span>
+            <label className={styles.switch}>
+              <input type="checkbox" checked={isBYOD} onChange={handleToggle} />
+              <span className={styles.slider}></span>
+            </label>
+          </div>
+          <div>
+            <p className={styles.toggleDescription}>
+              Toggle this on if you're bringing your own device. Leave it off if
+              Drive mate is to provide the device.
+            </p>
+          </div>
+        </div>
+      </div>
       {isBYOD && (
-        <>
-          <div className={styles.inputGroup}>
+        <div className={styles.byodGroup}>
+          <div className={`${styles.inputGroup} ${styles.section}`}>
             <label htmlFor={`serialNumber-${deviceNumber}`}>
               Serial number
             </label>
@@ -65,7 +68,7 @@ const DeviceCard: React.FC<DeviceCardProps> = ({ deviceNumber }) => {
             />
           </div>
 
-          <div className={styles.inputGroup}>
+          <div className={`${styles.inputGroup} ${styles.section}`}>
             <label>Upload an image of the device</label>
             <input
               id={`imageUpload-${deviceNumber}`}
@@ -82,7 +85,7 @@ const DeviceCard: React.FC<DeviceCardProps> = ({ deviceNumber }) => {
             </label>
             {image && <p className={styles.fileName}>{image.name}</p>}
           </div>
-        </>
+        </div>
       )}
     </div>
   );
