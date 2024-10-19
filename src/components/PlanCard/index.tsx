@@ -1,32 +1,26 @@
-import { Plan } from '../../utils/constants/plan';
-import style from './PlanCard.module.css';
+import { PlanCardInterface } from '../../utils/types/PlanCard.types';
+import styles from './PlanCard.module.css';
 
-interface PlanCardProps {
-  planInfo: Plan;
-  isSelected: boolean;
-  onSelect: () => void;
-}
-
-const PlanCard = ({ planInfo, isSelected, onSelect }: PlanCardProps) => {
+const PlanCard = ({ planInfo, isSelected, onSelect }: PlanCardInterface) => {
   return (
     <div
-      className={`${style.planCardContainer} ${
-        isSelected ? style.selected : ''
+      className={`${styles.planCardContainer} ${
+        isSelected ? styles.selected : ''
       }`}
       onClick={onSelect}
     >
-      <p className={style.title}>{planInfo.title}</p>
+      <p className={styles.title}>{planInfo.title}</p>
       {planInfo.description.map((desc, index) => (
-        <p className={style.description} key={index}>
+        <p className={styles.description} key={index}>
           <img src={desc?.icon} alt="" /> <span>{desc?.text}</span>
         </p>
       ))}
-      <p className={style.price}>
+      <p className={styles.price}>
         {' '}
-        <span className={style.priceAmount}>
+        <span className={styles.priceAmount}>
           {planInfo.price === 0 ? 'Free' : '$' + planInfo.price}
           {planInfo.price !== 0 && (
-            <span className={style.duration}>/month</span>
+            <span className={styles.duration}>/month</span>
           )}
         </span>{' '}
       </p>

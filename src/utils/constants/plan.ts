@@ -1,19 +1,9 @@
 import lockIcon from '../../assets/images/Lock.svg';
 import locationIcon from '../../assets/images/Group 5171.svg';
 import mileageIcon from '../../assets/images/e.svg';
+import { PlanInterface } from '../types/PlanCard.types';
 
-interface Description {
-  icon: any;
-  text: string;
-}
-export interface Plan {
-  id: number;
-  title: string;
-  description: Description[];
-  price: number;
-}
-
-export const plan: Plan[] = [
+export const plan: PlanInterface[] = [
   {
     id: 1,
     title: 'Just mates',

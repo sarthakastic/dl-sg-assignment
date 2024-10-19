@@ -1,17 +1,8 @@
 import React from 'react';
 import styles from './DynamicSection.module.css';
+import { DynamicSectionLayoutInterface } from '../../utils/types/DynamicSection.types';
 
-interface Section {
-  content: React.ReactNode;
-}
-
-interface DynamicSectionLayoutProps {
-  heading: string;
-  subheading: string;
-  sections: Section[];
-}
-
-const DynamicSection: React.FC<DynamicSectionLayoutProps> = ({
+const DynamicSection: React.FC<DynamicSectionLayoutInterface> = ({
   heading,
   subheading,
   sections,

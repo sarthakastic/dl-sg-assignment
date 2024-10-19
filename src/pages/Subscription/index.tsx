@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import style from './Subscription.module.css';
+import styles from './Subscription.module.css';
 import { updateCompletionStatus } from '../../redux/slices/routeStatusSlice';
 import PlanCard from '../../components/PlanCard';
-import { Plan, plan } from '../../utils/constants/plan';
+import { plan } from '../../utils/constants/plan';
 import { AddOn, addOn } from '../../utils/constants/addOn';
 import AddOnCard from '../../components/AddOnCard';
 import BottomBar from '../../components/BottomBar';
@@ -16,6 +16,7 @@ import {
 } from '../../redux/slices/planSlice';
 import { RootState } from '../../redux/store';
 import Shimmer from '../../components/commonUI/Shimmer';
+import { PlanInterface } from '../../utils/types/PlanCard.types';
 
 export const Subscription = () => {
   const dispatch = useDispatch();
@@ -38,7 +39,7 @@ export const Subscription = () => {
     }, 1000);
   }, []);
 
-  const handlePlanSelect = (plan: Plan) => {
+  const handlePlanSelect = (plan: PlanInterface) => {
     setSelectedPlan(plan?.title);
   };
 
@@ -61,9 +62,9 @@ export const Subscription = () => {
     {
       content: (
         <>
-          <p className={style.heading}>Select Your Plan</p>
-          <div className={style.planCardContainer}>
-            {plan.map((planInfo: Plan) => (
+          <p className={styles.heading}>Select Your Plan</p>
+          <div className={styles.planCardContainer}>
+            {plan.map((planInfo: PlanInterface) => (
               <PlanCard
                 key={planInfo.id}
                 planInfo={planInfo}
@@ -80,10 +81,10 @@ export const Subscription = () => {
           {
             content: (
               <>
-                <p className={style.heading}>
+                <p className={styles.heading}>
                   Select add-ons for your subscription{' '}
                 </p>
-                <div className={style.addOnCardContainer}>
+                <div className={styles.addOnCardContainer}>
                   {addOn
                     .filter((addOnInfo: AddOn) =>
                       addOnInfo.suggestion.some(
@@ -110,7 +111,7 @@ export const Subscription = () => {
           {
             content: (
               <>
-                <p className={style.heading}>Add card details</p>
+                <p className={styles.heading}>Add card details</p>
                 <PaymentCard
                   onSubmit={handleSubmit}
                   initialValues={{ cardNumber: '', expiryDate: '', cvc: '' }}
@@ -129,13 +130,13 @@ export const Subscription = () => {
       content: (
         <>
           <div>
-            <p className={style.text}>
+            <p className={styles.text}>
               Learn more about the plans here -{' '}
-              <a href="/" className={style.linkText}>
+              <a href="/" className={styles.linkText}>
                 What is the right plan for me?
               </a>
             </p>
-            <p className={style.text}>
+            <p className={styles.text}>
               You will be able to switch between plans easily later as well.
               Speak to our host success team if you need any clarifications.
             </p>

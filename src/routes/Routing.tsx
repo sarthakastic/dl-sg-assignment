@@ -2,7 +2,6 @@ import { Suspense } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import Devices from '../pages/Devices';
 import { Subscription } from '../pages/Subscription';
-// import App from "../App";
 
 function Routing() {
   return (

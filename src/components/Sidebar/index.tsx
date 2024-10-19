@@ -1,5 +1,5 @@
 import { useNavigate, useLocation } from 'react-router-dom';
-import style from './Sidebar.module.css';
+import styles from './Sidebar.module.css';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../redux/store';
 import pathToTabName from '../../utils/helper/pathToTabName';
@@ -12,7 +12,7 @@ const Sidebar = () => {
   const { routes } = useSelector((state: RootState) => state.routeStatus);
 
   return (
-    <div className={style.sidebarContainer}>
+    <div className={styles.sidebarContainer}>
       <ul>
         {routes.map((data) => {
           const isActive = location.pathname === `/${data?.path.toLowerCase()}`;
@@ -23,9 +23,9 @@ const Sidebar = () => {
               key={data?.id}
               onClick={() => navigate(data?.path.toLowerCase())}
               className={`
-                ${style.tabLink} 
-                ${isActive ? style.activeTab : ''} 
-             ${isCompleted ? '' : style.grayTab}
+                ${styles.tabLink} 
+                ${isActive ? styles.activeTab : ''} 
+             ${isCompleted ? '' : styles.grayTab}
               `}
             >
               {pathToTabName(data?.path)}

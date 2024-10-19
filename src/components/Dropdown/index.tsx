@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate, useLocation } from 'react-router-dom';
 import styles from './Dropdown.module.css';
@@ -14,7 +14,7 @@ const Dropdown = () => {
   const [selectedOption, setSelectedOption] = useState('');
 
   useEffect(() => {
-    const currentPath = location.pathname.slice(1); // Remove leading '/'
+    const currentPath = location.pathname.slice(1);
     setSelectedOption(pathToTabName(currentPath));
   }, [location]);
 

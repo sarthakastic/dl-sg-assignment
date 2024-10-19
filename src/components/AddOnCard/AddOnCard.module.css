@@ -1,13 +1,11 @@
 .addOnContainer {
   position: relative;
   height: 3.375rem;
-  width: 100%; /* Takes up all available space */
-  max-width: 28.125rem; /* Restricts it to 28.125rem max */
+  width: 100%;
+  max-width: 28.125rem;
   min-width: 20%;
   border: 1px solid var(--background-medium);
-  /* padding: 0.9rem; */
   background-color: var(--text-light);
-
   display: flex;
   align-items: center;
 }

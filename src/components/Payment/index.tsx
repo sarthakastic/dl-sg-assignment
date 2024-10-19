@@ -1,21 +1,9 @@
 import React, { useEffect } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
-import style from './Payment.module.css';
+import styles from './Payment.module.css';
 import { PaymentCardIcon } from '../../assets/icons/svgs';
-
-interface PaymentCardProps {
-  onSubmit: (values: PaymentCardValues) => void;
-  initialValues?: PaymentCardValues;
-  disabled?: boolean;
-  onValidityChange: (isValid: boolean) => void;
-}
-
-interface PaymentCardValues {
-  cardNumber: string;
-  expiryDate: string;
-  cvc: string;
-}
+import { PaymentCardInterface } from '../../utils/types/Payment.types';
 
 const validationSchema = Yup.object().shape({
   cardNumber: Yup.string()
@@ -42,7 +30,7 @@ const validationSchema = Yup.object().shape({
     .matches(/^[0-9]{3}$/, 'CVC must be of 3 digits'),
 });
 
-const PaymentCard: React.FC<PaymentCardProps> = ({
+const PaymentCard: React.FC<PaymentCardInterface> = ({
   onSubmit,
   initialValues = { cardNumber: '', expiryDate: '', cvc: '' },
   disabled = false,
@@ -102,16 +90,16 @@ const PaymentCard: React.FC<PaymentCardProps> = ({
         }, [isValid, dirty]);
 
         return (
-          <Form className={style.customPaymentCardInputField}>
-            <div className={style.customPaymentCardInputFieldInner}>
-              <span className={style.iconContainer}>
+          <Form className={styles.customPaymentCardInputField}>
+            <div className={styles.customPaymentCardInputFieldInner}>
+              <span className={styles.iconContainer}>
                 <PaymentCardIcon />
               </span>
               <Field
                 name="cardNumber"
                 type="text"
                 placeholder="1234 5678 1234 5678"
-                className={style.cardNumberInputField}
+                className={styles.cardNumberInputField}
                 disabled={disabled}
                 onChange={(e: any) => handleChange(e, setFieldValue)}
                 maxLength={19}
@@ -120,7 +108,7 @@ const PaymentCard: React.FC<PaymentCardProps> = ({
                 name="expiryDate"
                 type="text"
                 placeholder="MM/YY"
-                className={style.cardValidityInputField}
+                className={styles.cardValidityInputField}
                 disabled={disabled}
                 onChange={(e: any) => handleChange(e, setFieldValue)}
                 maxLength={5}
@@ -129,7 +117,7 @@ const PaymentCard: React.FC<PaymentCardProps> = ({
                 name="cvc"
                 type="text"
                 placeholder="CVC"
-                className={style.cardCvcNumberInputField}
+                className={styles.cardCvcNumberInputField}
                 disabled={disabled}
                 onChange={(e: any) => handleChange(e, setFieldValue)}
                 maxLength={4}
@@ -138,17 +126,17 @@ const PaymentCard: React.FC<PaymentCardProps> = ({
             <ErrorMessage
               name="cardNumber"
               component="span"
-              className={style.errorText}
+              className={styles.errorText}
             />
             <ErrorMessage
               name="expiryDate"
               component="span"
-              className={style.errorText}
+              className={styles.errorText}
             />
             <ErrorMessage
               name="cvc"
               component="span"
-              className={style.errorText}
+              className={styles.errorText}
             />
           </Form>
         );

@@ -10,7 +10,6 @@ const DeviceCard: React.FC<DeviceCardProps> = ({ deviceNumber }) => {
   const [isBYOD, setIsBYOD] = useState(false);
   const [deviceType, setDeviceType] = useState('');
   const [serialNumber, setSerialNumber] = useState('');
-  const [image, setImage] = useState<File | null>(null);
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
 
   const handleToggle = () => {
@@ -20,13 +19,11 @@ const DeviceCard: React.FC<DeviceCardProps> = ({ deviceNumber }) => {
   const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.files && event.target.files[0]) {
       const file = event.target.files[0];
-      setImage(file);
       setPreviewUrl(URL.createObjectURL(file));
     }
   };
 
   const handleDeleteImage = () => {
-    setImage(null);
     setPreviewUrl(null);
   };
 

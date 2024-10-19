@@ -3,7 +3,6 @@
   border: 1px solid var(--background-medium);
   border-radius: 8px;
   height: 12rem;
-
   width: 18.2rem;
   max-width: 18.2rem;
   padding: 0.9rem;
@@ -56,7 +55,6 @@
   .planCardContainer {
     width: 100%;
     max-width: 100%;
-    /* padding: 0; */
     margin: 0;
   }
 }
@@ -64,10 +62,6 @@
   .planCardContainer {
     width: 100%;
     max-width: 48%;
-    /* padding: 0; */
-    /* margin: 0; */
-    /* width: 17.6rem;
-    max-width: 18.2rem; */
   }
 }
 
@@ -75,7 +69,6 @@
   .planCardContainer {
     width: 100%;
     max-width: 100%;
-    /* padding: 0; */
     margin: 0;
   }
 }

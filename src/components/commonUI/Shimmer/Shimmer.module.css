@@ -1,16 +1,16 @@
 .shimmerWrapper {
   position: relative;
   overflow: hidden;
-  background-color: #e0e0e0; /* Light gray background */
+  background-color: #e0e0e0;
   border-radius: 8px;
-  display: block; /* Ensure it behaves like a block element */
+  display: block;
   width: 100%;
   height: 100%;
 }
 
 .shimmer {
-  width: 100%; /* Take full width */
-  height: 100%; /* Take full height */
+  width: 100%;
+  height: 100%;
   background: linear-gradient(to right, #e0e0e0 0%, #f8f8f8 50%, #e0e0e0 100%);
   animation: shimmer 1.5s infinite;
 }

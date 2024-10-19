@@ -2,7 +2,7 @@ import { useSelector } from 'react-redux';
 import { AddOn } from '../../utils/constants/addOn';
 import styles from './AddOnCard.module.css';
 import { RootState } from '../../redux/store';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 const AddOnCard = ({
   addOnInfo,

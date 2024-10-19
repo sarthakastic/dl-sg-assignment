@@ -1,6 +1,5 @@
 .deviceContainer {
   height: fit-content;
-  /* background-color: white; */
   border: 1px solid var(--background-medium);
   border-radius: 8px;
   padding: 1.4375rem 2.5rem;
@@ -20,15 +19,12 @@
   flex-wrap: wrap;
   gap: 0.9rem;
   width: 100%;
-  /* overflow: hidden; */
 }
 .addOnCardContainer {
   display: flex;
   justify-content: space-between;
   flex-wrap: nowrap;
   gap: 0.9rem;
-  /* width: 100%; */
-  /* overflow: hidden; */
 }
 
 .text {

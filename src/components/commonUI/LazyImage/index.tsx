@@ -1,13 +1,7 @@
-import React, { useState, useEffect, useRef, ImgHTMLAttributes } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import { OptimizedImageInterface } from '../../../utils/types/LazyImage.types';
 
-interface OptimizedImageProps extends ImgHTMLAttributes<HTMLImageElement> {
-  src: string;
-  alt: string;
-  width?: number | string;
-  height?: number | string;
-}
-
-const LazyImage: React.FC<OptimizedImageProps> = ({
+const LazyImage: React.FC<OptimizedImageInterface> = ({
   src,
   alt,
   width,

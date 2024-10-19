@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
 import Sidebar from '../../Sidebar';
-import style from './Layout.module.css';
+import styles from './Layout.module.css';
 import Dropdown from '../../Dropdown';
 
 type Props = {
@@ -9,7 +9,7 @@ type Props = {
 
 const MainContent = (props: Props) => {
   return (
-    <div className={style.mainContentContainer}>
+    <div className={styles.mainContentContainer}>
       <Sidebar />
       <Dropdown />
       {props?.children}
