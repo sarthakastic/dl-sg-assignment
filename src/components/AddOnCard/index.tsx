@@ -1,9 +1,22 @@
+import { useSelector } from 'react-redux';
 import { AddOn } from '../../utils/constants/addOn';
 import styles from './AddOnCard.module.css';
+import { RootState } from '../../redux/store';
+import { useEffect, useState } from 'react';
 
-const AddOnCard = ({ addOnInfo }: { addOnInfo: AddOn }) => {
+const AddOnCard = ({
+  addOnInfo,
+  onSelect,
+}: {
+  addOnInfo: AddOn;
+  onSelect: () => void;
+}) => {
+  const { selectedAddOns } = useSelector((state: RootState) => state.plan);
+
+  const [checkedAddOn, setCheckedAddOn] = useState(selectedAddOns);
+
   return (
-    <div className={styles.addOnContainer}>
+    <div className={styles.addOnContainer} onClick={onSelect}>
       {!addOnInfo.isActive && (
         <div className={styles.comingSoonBanner}>Coming soon</div>
       )}
@@ -15,6 +28,8 @@ const AddOnCard = ({ addOnInfo }: { addOnInfo: AddOn }) => {
           type="radio"
           id={`addon-${addOnInfo.id}`}
           name="addon"
+          checked={addOnInfo?.title === checkedAddOn}
+          onChange={() => setCheckedAddOn(addOnInfo?.title)}
           className={styles.radioButton}
           disabled={!addOnInfo.isActive}
         />

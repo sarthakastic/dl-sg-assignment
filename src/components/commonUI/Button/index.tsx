@@ -16,6 +16,7 @@ interface Props {
   disabledBackground?: string;
   disabled?: boolean;
   children: React.ReactNode;
+  onClick?: any;
 }
 
 const Button: React.FC<Props> = ({
@@ -28,6 +29,7 @@ const Button: React.FC<Props> = ({
   height,
   gap,
   radius,
+  onClick,
   underline,
   background,
   disabledBackground,
@@ -50,6 +52,7 @@ const Button: React.FC<Props> = ({
     height,
     margin,
     padding,
+    onClick,
     borderRadius: radius,
     textDecoration: underline,
     background: variant === 'outlined' ? background : undefined,
@@ -58,7 +61,13 @@ const Button: React.FC<Props> = ({
   };
 
   return (
-    <button className={classNames} style={style} disabled={disabled} {...rest}>
+    <button
+      onClick={() => onClick()}
+      className={classNames}
+      style={style}
+      disabled={disabled}
+      {...rest}
+    >
       {children}
     </button>
   );

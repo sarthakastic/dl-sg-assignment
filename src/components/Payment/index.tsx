@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import style from './Payment.module.css';
@@ -8,6 +8,7 @@ interface PaymentCardProps {
   onSubmit: (values: PaymentCardValues) => void;
   initialValues?: PaymentCardValues;
   disabled?: boolean;
+  onValidityChange: (isValid: boolean) => void;
 }
 
 interface PaymentCardValues {
@@ -38,16 +39,17 @@ const validationSchema = Yup.object().shape({
     }),
   cvc: Yup.string()
     .required('CVC is required')
-    .matches(/^[0-9]{3,4}$/, 'CVC must be 3 or 4 digits'),
+    .matches(/^[0-9]{3}$/, 'CVC must be of 3 digits'),
 });
 
 const PaymentCard: React.FC<PaymentCardProps> = ({
   onSubmit,
   initialValues = { cardNumber: '', expiryDate: '', cvc: '' },
   disabled = false,
+  onValidityChange,
 }) => {
   const formatCardNumber = (value: string) => {
-    const v = value.replace(/\s+/g, '').replace(/[^0-9]/gi, '');
+    const v = value.replace(/\D/g, '');
     const matches = v.match(/\d{4,16}/g);
     const match = (matches && matches[0]) || '';
     const parts = [];
@@ -56,7 +58,7 @@ const PaymentCard: React.FC<PaymentCardProps> = ({
       parts.push(match.substring(i, i + 4));
     }
 
-    return parts.length ? parts.join(' ') : value;
+    return parts.length ? parts.join(' ') : v;
   };
 
   const formatExpiryDate = (value: string) => {
@@ -64,7 +66,7 @@ const PaymentCard: React.FC<PaymentCardProps> = ({
     return v.length >= 2 ? `${v.slice(0, 2)}/${v.slice(2, 4)}` : v;
   };
 
-  const formatCVC = (value: string) => value.replace(/\D/g, '').slice(0, 4);
+  const formatCVC = (value: string) => value.replace(/\D/g, '').slice(0, 3);
 
   const handleChange = (
     event: React.ChangeEvent<HTMLInputElement>,
@@ -94,57 +96,63 @@ const PaymentCard: React.FC<PaymentCardProps> = ({
       validationSchema={validationSchema}
       onSubmit={onSubmit}
     >
-      {({ setFieldValue }) => (
-        <Form className={style.customPaymentCardInputField}>
-          <div className={style.customPaymentCardInputFieldInner}>
-            <span className={style.iconContainer}>
-              <PaymentCardIcon />
-            </span>
-            <Field
+      {({ isValid, dirty, setFieldValue }) => {
+        useEffect(() => {
+          onValidityChange(isValid && dirty);
+        }, [isValid, dirty]);
+
+        return (
+          <Form className={style.customPaymentCardInputField}>
+            <div className={style.customPaymentCardInputFieldInner}>
+              <span className={style.iconContainer}>
+                <PaymentCardIcon />
+              </span>
+              <Field
+                name="cardNumber"
+                type="text"
+                placeholder="1234 5678 1234 5678"
+                className={style.cardNumberInputField}
+                disabled={disabled}
+                onChange={(e: any) => handleChange(e, setFieldValue)}
+                maxLength={19}
+              />
+              <Field
+                name="expiryDate"
+                type="text"
+                placeholder="MM/YY"
+                className={style.cardValidityInputField}
+                disabled={disabled}
+                onChange={(e: any) => handleChange(e, setFieldValue)}
+                maxLength={5}
+              />
+              <Field
+                name="cvc"
+                type="text"
+                placeholder="CVC"
+                className={style.cardCvcNumberInputField}
+                disabled={disabled}
+                onChange={(e: any) => handleChange(e, setFieldValue)}
+                maxLength={4}
+              />
+            </div>
+            <ErrorMessage
               name="cardNumber"
-              type="text"
-              placeholder="1234 5678 1234 5678"
-              className={style.cardNumberInputField}
-              disabled={disabled}
-              onChange={(e: any) => handleChange(e, setFieldValue)}
-              maxLength={19}
+              component="span"
+              className={style.errorText}
             />
-            <Field
+            <ErrorMessage
               name="expiryDate"
-              type="text"
-              placeholder="MM/YY"
-              className={style.cardValidityInputField}
-              disabled={disabled}
-              onChange={(e: any) => handleChange(e, setFieldValue)}
-              maxLength={5}
+              component="span"
+              className={style.errorText}
             />
-            <Field
+            <ErrorMessage
               name="cvc"
-              type="text"
-              placeholder="CVC"
-              className={style.cardCvcNumberInputField}
-              disabled={disabled}
-              onChange={(e: any) => handleChange(e, setFieldValue)}
-              maxLength={4}
+              component="span"
+              className={style.errorText}
             />
-          </div>
-          <ErrorMessage
-            name="cardNumber"
-            component="span"
-            className={style.errorText}
-          />
-          <ErrorMessage
-            name="expiryDate"
-            component="span"
-            className={style.errorText}
-          />
-          <ErrorMessage
-            name="cvc"
-            component="span"
-            className={style.errorText}
-          />
-        </Form>
-      )}
+          </Form>
+        );
+      }}
     </Formik>
   );
 };

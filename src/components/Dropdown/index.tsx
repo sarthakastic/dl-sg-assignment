@@ -25,8 +25,6 @@ const Dropdown = () => {
     setIsOpen(false);
   };
 
-  console.log(selectedOption, 'seghhvjh kkjh $%^&*');
-
   return (
     <div className={styles.dropdown}>
       <button className={styles.button} onClick={toggleDropdown}>

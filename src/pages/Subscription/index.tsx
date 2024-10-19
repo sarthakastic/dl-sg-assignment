@@ -1,37 +1,60 @@
-import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import style from './Subscription.module.css';
 import { updateCompletionStatus } from '../../redux/slices/routeStatusSlice';
 import PlanCard from '../../components/PlanCard';
 import { Plan, plan } from '../../utils/constants/plan';
 import { AddOn, addOn } from '../../utils/constants/addOn';
 import AddOnCard from '../../components/AddOnCard';
-import CardDetails from '../../components/CardDetails';
 import BottomBar from '../../components/BottomBar';
 import DynamicSection from '../../components/DynamicSection';
 import PaymentCard from '../../components/Payment';
+import {
+  updateMyPlan,
+  updateSelectedAddOns,
+} from '../../redux/slices/planSlice';
+import { RootState } from '../../redux/store';
+import Shimmer from '../../components/commonUI/Shimmer';
 
 export const Subscription = () => {
   const dispatch = useDispatch();
-  const [selectedPlan, setSelectedPlan] = useState<string>('');
-  const [selectedPlanPrice, setSelectedPlanPrice] = useState<number>(0);
+  const navigate = useNavigate();
 
-  // const handleSubmit = (values: {
-  //   cardNumber: string;
-  //   expiry: string;
-  //   cvc: string;
-  // }) => {
-  //   console.log('Form submitted:', values);
-  // };
+  const { myPlan, selectedAddOns } = useSelector(
+    (state: RootState) => state.plan
+  );
+
+  const [selectedPlan, setSelectedPlan] = useState<string>(myPlan);
+  const [selectedAddOn, setSelectedAddOn] = useState<string>(selectedAddOns);
+
+  const [isPaymentFormValid, setIsPaymentFormValid] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [isDataFetching, setIsDataFetching] = useState<boolean>(true);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setIsDataFetching(false);
+    }, 1000);
+  }, []);
 
   const handlePlanSelect = (plan: Plan) => {
     setSelectedPlan(plan?.title);
-    setSelectedPlanPrice(plan?.price);
   };
 
-  const handleSubmit = (values: any) => {
-    console.log(values);
-    // Handle form submission
+  const handlePaymentFormValidityChange = (isValid: boolean) => {
+    setIsPaymentFormValid(isValid);
+  };
+
+  const handleSubmit = () => {
+    setIsLoading(true);
+    dispatch(updateCompletionStatus({ path: 'subscription', value: true }));
+    dispatch(updateMyPlan(selectedPlan));
+    dispatch(updateSelectedAddOns(selectedAddOn));
+    setTimeout(() => {
+      setIsLoading(false);
+      navigate('/device');
+    }, 1000);
   };
 
   const sections = [
@@ -70,7 +93,11 @@ export const Subscription = () => {
                       )
                     )
                     .map((addOnInfo: AddOn) => (
-                      <AddOnCard key={addOnInfo?.id} addOnInfo={addOnInfo} />
+                      <AddOnCard
+                        key={addOnInfo?.id}
+                        addOnInfo={addOnInfo}
+                        onSelect={() => setSelectedAddOn(addOnInfo?.title)}
+                      />
                     ))}
                 </div>
               </>
@@ -87,12 +114,12 @@ export const Subscription = () => {
                 <PaymentCard
                   onSubmit={handleSubmit}
                   initialValues={{ cardNumber: '', expiryDate: '', cvc: '' }}
+                  onValidityChange={handlePaymentFormValidityChange}
                 />
                 <p>
                   You will not be charged right now. Subscription will only
                   start once your listing is published and live.
                 </p>
-                {/* <CardDetails onSubmit={handleSubmit} /> */}
               </>
             ),
           },
@@ -118,6 +145,10 @@ export const Subscription = () => {
     },
   ];
 
+  if (isDataFetching) {
+    return <Shimmer height="50vh" />;
+  }
+
   return (
     <div>
       <DynamicSection
@@ -126,7 +157,11 @@ export const Subscription = () => {
         sections={sections}
       />
 
-      <BottomBar disabled={!selectedPlan} />
+      <BottomBar
+        isLoading={isLoading}
+        onClick={handleSubmit}
+        disabled={!selectedPlan || !isPaymentFormValid}
+      />
     </div>
   );
 };
