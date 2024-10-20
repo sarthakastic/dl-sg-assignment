@@ -5,6 +5,7 @@ import Dropdown from '../../Dropdown';
 import { useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../../redux/store';
+import Toaster from '../../Toaster';
 
 type Props = {
   children: ReactNode;
@@ -29,6 +30,7 @@ const MainContent = (props: Props) => {
 
   return (
     <div className={styles.mainContentContainer}>
+      <Toaster/>
       <Sidebar />
       <div className={styles.dropdownWrapper}>
         <Dropdown />

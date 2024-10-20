@@ -17,6 +17,7 @@ import {
 import { RootState } from '../../redux/store';
 import Shimmer from '../../components/commonUI/Shimmer';
 import { PlanInterface } from '../../utils/types/PlanCard.types';
+import { showToaster } from '../../redux/slices/toasterSlice';
 
 const Subscription = () => {
   const dispatch = useDispatch();
@@ -35,9 +36,10 @@ const Subscription = () => {
   const [cardDetails, setCardDetails] = useState({ cardNumber: '', expiryDate: '', cvc: '' });
 
   useEffect(() => {
-    setTimeout(() => {
+   const timer = setTimeout(() => {
       setIsDataFetching(false);
     }, 1000);
+    return () => clearTimeout(timer);
   }, []);
 
   const handlePlanSelect = (plan: PlanInterface) => {
@@ -65,6 +67,7 @@ const Subscription = () => {
 
     setTimeout(() => {
       setIsLoading(false);
+      dispatch(showToaster({ type: "success", message: "Subscription activated successful!" }));
       navigate('/device');
     }, 1000);
   };

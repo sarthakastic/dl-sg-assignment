@@ -6,9 +6,11 @@ import Shimmer from '../../components/commonUI/Shimmer';
 
 const Devices = () => {
   useEffect(() => {
-    setTimeout(() => {
+    const timer = setTimeout(() => {
       setIsDataFetching(false);
     }, 1000);
+
+    return () => clearTimeout(timer);
   }, []);
 
   const deviceNumbers = [1, 2, 3, 4];

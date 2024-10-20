@@ -3,6 +3,7 @@ import { persistStore, persistReducer } from 'redux-persist';
 import storageSession from 'redux-persist/lib/storage/session';
 import routeStatusReducer from './slices/routeStatusSlice';
 import planReducer from './slices/planSlice';
+import toastReducer from './slices/toasterSlice'
 import { combineReducers } from 'redux';
 
 const persistConfig = {
@@ -13,6 +14,7 @@ const persistConfig = {
 const rootReducer = combineReducers({
   routeStatus: routeStatusReducer,
   plan: planReducer,
+  toast: toastReducer
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
