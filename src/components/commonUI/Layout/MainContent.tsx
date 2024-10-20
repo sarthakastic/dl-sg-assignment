@@ -11,7 +11,9 @@ const MainContent = (props: Props) => {
   return (
     <div className={styles.mainContentContainer}>
       <Sidebar />
-      <Dropdown />
+      <div className={styles.dropdownWrapper}>
+        <Dropdown />
+      </div>
       {props?.children}
     </div>
   );

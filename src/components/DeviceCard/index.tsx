@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 
 import styles from './DeviceCard.module.css';
+import LazyImage from '../commonUI/LazyImage';
 
 interface DeviceCardProps {
   deviceNumber: number;
@@ -75,10 +76,10 @@ const DeviceCard: React.FC<DeviceCardProps> = ({ deviceNumber }) => {
           </div>
 
           <div className={`${styles.inputGroup} ${styles.section}`}>
-            <label>Upload an image of the device</label>
+            {!previewUrl && <label>Upload an image of the device</label>}
             {previewUrl ? (
               <div className={styles.imagePreviewContainer}>
-                <img
+                <LazyImage
                   src={previewUrl}
                   alt="Device preview"
                   className={styles.imagePreview}
@@ -103,7 +104,7 @@ const DeviceCard: React.FC<DeviceCardProps> = ({ deviceNumber }) => {
                   htmlFor={`imageUpload-${deviceNumber}`}
                   className={styles.uploadButton}
                 >
-                  Click to upload
+                  <span>Click to upload</span>
                 </label>
               </>
             )}

@@ -1,9 +1,9 @@
 .deviceCard {
-  background-color: #ffffff;
+  background-color: var(--white);
   box-sizing: border-box;
   width: 100%;
   max-height: fit-content;
-  padding: 0;
+  padding: 0 2.5rem;
 }
 
 .defaultInputGroup {
@@ -11,27 +11,51 @@
   gap: 1.25rem;
 }
 
+.uploadButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 10rem;
+  max-width: 20.9375rem;
+  background-color: var(--foreground-color);
+  border: 1px dashed var(--background-medium);
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 0.25rem;
+}
+
+.uploadButton span {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--secondary-color);
+  text-decoration: underline;
+  cursor: pointer;
+}
+
 .title {
   font-size: 1.375rem;
   font-weight: 500;
   color: var(--text-dark);
+  margin: 0 0 1.25rem;
 }
 
-.inputGroup {
-  /* width: 50%; */
-  margin-bottom: 16px;
+.inputGroup:nth-child(1) {
+  margin-bottom: 1.25rem;
 }
 
 .section {
   max-width: 50%;
 }
 
+input::placeholder {
+  font-size: 1.25rem;
+  color: var(--background-dark);
+}
+
 .inputGroup label {
-  display: block;
   margin-bottom: 4px;
-  font-weight: 500;
-  color: #555;
-  font-size: 0.9rem;
+  font-weight: 300;
+  color: var(--text-dark);
 }
 
 .inputGroup input[type='text'] {
@@ -39,17 +63,18 @@
   max-width: 100%;
   height: 3.375rem;
   padding: 0 0.9rem;
-  border: 1px solid #ddd;
+  border: 1px solid var(--background-medium);
   border-radius: 4px;
   font-size: 0.9rem;
   box-sizing: border-box;
+  margin-top: 0.25rem;
 }
 
 .inputGroup input[type='file'] {
   width: 20.9375rem;
   height: 10rem;
   padding: 8px;
-  border: 1px solid #ddd;
+  border: 1px solid var(--background-medium);
   border-radius: 4px;
   font-size: 0.9rem;
 }
@@ -65,6 +90,8 @@
   align-items: center;
   justify-content: space-between;
   margin-bottom: 8px;
+
+  margin-right: 1rem;
 }
 
 .switch {
@@ -112,44 +139,63 @@ input:checked + .slider:before {
   transform: translateX(18px);
 }
 
+.toggleHeader span {
+  font-size: 1.25rem;
+}
+
 .byodGroup {
   display: flex;
   gap: 1.25rem;
+  background-color: white;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  height: fit-content;
+  width: 100%;
 }
 
 .toggleDescription {
-  font-size: 1rem;
-  color: var(--text-dark);
   margin-top: 0.9rem;
 }
 
-.fileName {
-  margin-top: 4px;
-  font-size: 0.8rem;
-  color: #666;
+.uploadSection {
+  margin-top: 1rem;
 }
 
-.uploadButton {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  height: 10rem;
+.imagePreviewContainer {
+  position: relative;
   width: 100%;
-  background-color: var(--text-light);
-  border: 1px solid var(--background-medium);
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 1rem;
+  max-height: 8rem;
+}
 
-  text-align: center;
-  text-decoration: underline;
+.imagePreview {
+  width: 20.9375rem;
+  max-height: 8rem;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.deleteButton {
+  position: absolute;
+  top: 0.5rem;
+  left: 0.5rem;
+  background-color: rgba(255, 255, 255, 0.8);
+  border: none;
+  border-radius: 50%;
+  width: 1.5rem;
+  height: 1.5rem;
+  font-size: 0.8rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 @media (max-width: 1200px) {
   .byodGroup,
   .defaultInputGroup {
     flex-direction: column;
+    gap: 0.9rem;
   }
 
   .section {
@@ -157,6 +203,24 @@ input:checked + .slider:before {
   }
   .inputGroup input[type='text'] {
     width: 100%;
+  }
+
+  .uploadButton {
+    width: 100%;
+  }
+
+  .inputGroup:nth-child(1) {
+    margin-bottom: 0;
+  }
+
+  .toggleHeader {
+    margin-bottom: 0;
+    margin-right: 0;
+  }
+}
+@media (max-width: 767px) {
+  .deviceCard {
+    padding: 0 1.25rem;
   }
 }
 
@@ -172,10 +236,5 @@ input:checked + .slider:before {
   .toggleGroup {
     flex-direction: row;
     align-items: center;
-  }
-
-  .toggleHeader {
-    margin-bottom: 0;
-    margin-right: 16px;
   }
 }

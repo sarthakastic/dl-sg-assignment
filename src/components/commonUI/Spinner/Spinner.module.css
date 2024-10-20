@@ -1,6 +1,6 @@
 .spinner {
-  border: solid #026786;
-  border-top-color: #00a3ad;
+  border: solid var(--secondary-color);
+  border-top-color: var(--link-color);
   border-radius: 50%;
   animation: spin 1s linear infinite;
 }

@@ -15,14 +15,6 @@
   border-radius: 4px;
 }
 
-.paymentCardIcon {
-  width: 1.5rem;
-  min-width: 1.5rem;
-  height: 1.5rem;
-  fill: var(--philippineSilver-1000);
-  transition: 200ms all ease-in-out;
-}
-
 .inputField {
   outline: none;
   background-color: transparent;
@@ -30,17 +22,19 @@
   color: var(--background-dark);
   font-size: 1.125rem;
   font-weight: 500;
-  line-height: 1;
   transition: 200ms all ease-in-out;
 }
 
 .inputField::placeholder {
-  color: var(--philippineSilver-1000);
+  color: var(--background-dark);
   opacity: 1;
+  font-size: 1.125rem;
+  display: flex;
+  align-items: center;
 }
 
 .inputField::-ms-input-placeholder {
-  color: var(--philippineSilver-1000);
+  color: var(--background-dark);
   opacity: 1;
 }
 
@@ -64,13 +58,20 @@
   outline: none;
 }
 
+.cardNumberInputField {
+  width: 13rem;
+  height: 1.375rem;
+}
+
 .cardValidityInputField {
-  width: 3.75rem;
-  margin-left: 5.5rem;
+  width: 4.4rem;
+  margin-left: 4.5rem;
+  height: 1.375rem;
 }
 
 .cardCvcNumberInputField {
-  width: 2.5rem;
+  width: 2.7rem;
+  height: 1.375rem;
   margin-left: 2.5rem;
 }
 
@@ -97,46 +98,21 @@
 
   .cardValidityInputField {
     width: 3.75rem;
-    margin-left: 0;
+    margin-left: auto;
   }
 
   .cardCvcNumberInputField {
     width: 2.5rem;
-    margin-left: 0;
+    margin-left: auto;
   }
 
   .iconContainer {
     margin-right: 0.6rem;
   }
-}
 
-@media screen and (max-width: 475.98px) {
-  .customPaymentCardInputFieldInner {
-    gap: 0.5rem;
-  }
-
-  .paymentCardIcon {
-    width: 1rem;
-    min-width: 1rem;
-    height: 1rem;
-  }
-
-  .inputField {
-    font-size: 0.875rem;
-  }
-
-  .cardNumberInputField {
-    width: 8.625rem;
-    min-width: 8.625rem;
-  }
-
-  .cardValidityInputField {
-    width: 2.875rem;
-    min-width: 2.875rem;
-  }
-
-  .cardCvcNumberInputField {
-    width: 1.875rem;
-    min-width: 1.875rem;
+  .inputField::placeholder {
+    color: var(--background-dark);
+    opacity: 1;
+    font-size: 1rem;
   }
 }

@@ -1,5 +1,5 @@
 .planCardContainer {
-  background-color: var(--text-light);
+  background-color: var(--foreground-color);
   border: 1px solid var(--background-medium);
   border-radius: 8px;
   height: 12rem;

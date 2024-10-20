@@ -5,11 +5,13 @@
   position: fixed;
   bottom: 0;
   left: 0;
-  z-index: 10;
-  background-color: white;
+  z-index: 1;
+  background-color: var(--white);
   display: flex;
   justify-content: flex-end;
   align-items: center;
+
+  box-sizing: border-box;
 }
 
 @media screen and (max-width: 1200px) {

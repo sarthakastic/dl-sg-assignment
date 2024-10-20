@@ -52,6 +52,17 @@
   color: var(--secondary-color);
 }
 
+.subscriptioSectionWrapper {
+  padding: 0 2.5rem;
+}
+
+.paymnetSubtext {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--background-dark);
+  margin: 0.625rem 0 0;
+}
+
 @media screen and (max-width: 1500px) {
   .addOnCardContainer {
     flex-direction: column;
@@ -60,6 +71,10 @@
 @media screen and (max-width: 1200px) {
   .addOnCardContainer {
     flex-direction: row;
+  }
+
+  .subscriptioSectionWrapper {
+    padding: 0 1.25rem;
   }
 }
 @media screen and (max-width: 830px) {

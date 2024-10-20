@@ -61,7 +61,7 @@ export const Subscription = () => {
   const sections = [
     {
       content: (
-        <>
+        <div className={styles.subscriptioSectionWrapper}>
           <p className={styles.heading}>Select Your Plan</p>
           <div className={styles.planCardContainer}>
             {plan.map((planInfo: PlanInterface) => (
@@ -73,14 +73,14 @@ export const Subscription = () => {
               />
             ))}
           </div>
-        </>
+        </div>
       ),
     },
     ...(selectedPlan
       ? [
           {
             content: (
-              <>
+              <div className={styles.subscriptioSectionWrapper}>
                 <p className={styles.heading}>
                   Select add-ons for your subscription{' '}
                 </p>
@@ -101,7 +101,7 @@ export const Subscription = () => {
                       />
                     ))}
                 </div>
-              </>
+              </div>
             ),
           },
         ]
@@ -110,25 +110,25 @@ export const Subscription = () => {
       ? [
           {
             content: (
-              <>
+              <div className={styles.subscriptioSectionWrapper}>
                 <p className={styles.heading}>Add card details</p>
                 <PaymentCard
                   onSubmit={handleSubmit}
                   initialValues={{ cardNumber: '', expiryDate: '', cvc: '' }}
                   onValidityChange={handlePaymentFormValidityChange}
                 />
-                <p>
+                <p className={styles.paymnetSubtext}>
                   You will not be charged right now. Subscription will only
                   start once your listing is published and live.
                 </p>
-              </>
+              </div>
             ),
           },
         ]
       : []),
     {
       content: (
-        <>
+        <div className={styles.subscriptioSectionWrapper}>
           <div>
             <p className={styles.text}>
               Learn more about the plans here -{' '}
@@ -141,7 +141,7 @@ export const Subscription = () => {
               Speak to our host success team if you need any clarifications.
             </p>
           </div>
-        </>
+        </div>
       ),
     },
   ];

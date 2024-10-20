@@ -26,11 +26,11 @@
 
 .divider {
   border: none;
-  border-top: 1px solid #e5e7eb;
+  border-top: 1px solid var(--background-medium);
+  margin: 0;
 }
 
 .section {
-  padding: 1.25rem 0;
 }
 
 .sectionContent {
@@ -49,19 +49,20 @@
   }
 }
 
-@media screen and (max-width: 767.98px) {
-  .divider {
-    display: none;
+@media screen and (max-width: 767px) {
+  .heading {
+    font-size: 1.75rem;
+    font-weight: 900;
   }
 
   .container {
     width: 100%;
-    background-color: var(--text-light);
+    background-color: var(--foreground-color);
     margin: 0;
     padding: 0;
+    box-shadow: none;
   }
 
-  .sectionContent,
   .heading,
   .subheading {
     padding: 0 1.25rem;
