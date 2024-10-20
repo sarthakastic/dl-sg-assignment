@@ -100,9 +100,7 @@ const PaymentCard: React.FC<PaymentCardInterface> = ({
           <Form className={styles.customPaymentCardInputField} aria-label="Payment form">
             <div className={styles.customPaymentCardInputFieldInner}>
               <div className={styles.cardNumberContainer}>
-                <label htmlFor="cardNumber" className={styles.visuallyHidden}>
-                  Card Number
-                </label>
+               
                 <span className={styles.iconContainer}>
                   <PaymentCardIcon />
                 </span>
@@ -121,9 +119,7 @@ const PaymentCard: React.FC<PaymentCardInterface> = ({
 
               <div className={styles.cardValidityContainer}>
                 <div>
-                  <label htmlFor="expiryDate" className={styles.visuallyHidden}>
-                    Expiry Date
-                  </label>
+                 
                   <Field
                     id="expiryDate"
                     name="expiryDate"
@@ -137,9 +133,7 @@ const PaymentCard: React.FC<PaymentCardInterface> = ({
                   />
                 </div>
                 <div>
-                  <label htmlFor="cvc" className={styles.visuallyHidden}>
-                    CVC
-                  </label>
+                 
                   <Field
                     id="cvc"
                     name="cvc"
