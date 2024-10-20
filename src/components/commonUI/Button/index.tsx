@@ -35,23 +35,31 @@ const Button: React.FC<ButtonInterface> = ({
     height,
     margin,
     padding,
-    onClick,
     borderRadius: radius,
     textDecoration: underline,
-    background: variant === 'outlined' ? background : undefined,
+    background: disabled ? disabledBackground : background,
     borderColor: variant === 'outlined' ? borderColor : undefined,
     color: variant === 'outlined' ? color : undefined,
+    cursor: disabled ? 'not-allowed' : 'pointer',
+  };
+
+  const handleClick = () => {
+    if (!disabled && onClick) onClick();
   };
 
   return (
     <button
-      onClick={() => onClick()}
+      onClick={handleClick}
       className={classNames}
       style={style}
       disabled={disabled}
+      aria-disabled={disabled}
+      tabIndex={disabled ? -1 : 0}
       {...rest}
     >
-      {children}
+      <span aria-live="polite" aria-atomic="true">
+        {children}
+      </span>
     </button>
   );
 };

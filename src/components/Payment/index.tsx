@@ -92,36 +92,40 @@ const PaymentCard: React.FC<PaymentCardInterface> = ({
         return (
           <Form className={styles.customPaymentCardInputField}>
             <div className={styles.customPaymentCardInputFieldInner}>
-              <span className={styles.iconContainer}>
-                <PaymentCardIcon />
-              </span>
-              <Field
-                name="cardNumber"
-                type="text"
-                placeholder="1234 5678 1234 5678"
-                className={styles.cardNumberInputField}
-                disabled={disabled}
-                onChange={(e: any) => handleChange(e, setFieldValue)}
-                maxLength={19}
-              />
-              <Field
-                name="expiryDate"
-                type="text"
-                placeholder="MM/YY"
-                className={styles.cardValidityInputField}
-                disabled={disabled}
-                onChange={(e: any) => handleChange(e, setFieldValue)}
-                maxLength={5}
-              />
-              <Field
-                name="cvc"
-                type="text"
-                placeholder="CVC"
-                className={styles.cardCvcNumberInputField}
-                disabled={disabled}
-                onChange={(e: any) => handleChange(e, setFieldValue)}
-                maxLength={4}
-              />
+              <div className={styles.cardNumberContainer}>
+                <span className={styles.iconContainer}>
+                  <PaymentCardIcon />
+                </span>
+                <Field
+                  name="cardNumber"
+                  type="text"
+                  placeholder="1234 5678 1234 5678"
+                  className={styles.cardNumberInputField}
+                  disabled={disabled}
+                  onChange={(e: any) => handleChange(e, setFieldValue)}
+                  maxLength={19}
+                />
+              </div>
+              <div className={styles.cardValidityContainer}>
+                <Field
+                  name="expiryDate"
+                  type="text"
+                  placeholder="MM/YY"
+                  className={styles.cardValidityInputField}
+                  disabled={disabled}
+                  onChange={(e: any) => handleChange(e, setFieldValue)}
+                  maxLength={5}
+                />
+                <Field
+                  name="cvc"
+                  type="text"
+                  placeholder="CVC"
+                  className={styles.cardCvcNumberInputField}
+                  disabled={disabled}
+                  onChange={(e: any) => handleChange(e, setFieldValue)}
+                  maxLength={4}
+                />
+              </div>
             </div>
             <ErrorMessage
               name="cardNumber"
