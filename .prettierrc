@@ -8,5 +8,11 @@
     "jsxSingleQuote": false,
     "bracketSpacing": true,
     "arrowParens": "always",
-    "endOfLine": "lf"
-}
+    "endOfLine": "lf",
+    "proseWrap": "preserve",
+    "insertPragma": false,
+    "requireConfig": false,
+    "htmlWhitespaceSensitivity": "ignore",
+    "disableLanguages": []
+  }
+  

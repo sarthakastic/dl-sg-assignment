@@ -1,3 +1,4 @@
+// Importing required libraries and types
 import React, { useEffect } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
@@ -5,6 +6,7 @@ import styles from './Payment.module.css';
 import { PaymentCardIcon } from '../../assets/icons/svgs';
 import { PaymentCardInterface } from '../../utils/types/Payment.types';
 
+// Yup validation schema for form validation
 const validationSchema = Yup.object().shape({
   cardNumber: Yup.string()
     .required('Card number is required')
@@ -47,11 +49,17 @@ const PaymentCard: React.FC<PaymentCardInterface> = ({
     return parts.length ? parts.join(' ') : v;
   };
 
-  const formatExpiryDate = (value: string) =>
-    value.replace(/\s+/g, '').replace(/[^0-9]/gi, '').length >= 2
-      ? `${value.slice(0, 2)}/${value.slice(2, 4)}`
-      : value;
-
+  const formatExpiryDate = (value: string) => {
+    const sanitizedValue = value.replace(/\D/g, ''); 
+    if (sanitizedValue.length === 0) return ''; 
+    if (sanitizedValue.length <= 2) return sanitizedValue; 
+  
+    const month = sanitizedValue.slice(0, 2);
+    const year = sanitizedValue.slice(2, 4);
+  
+    return `${month}/${year}`;
+  };
+  
   const formatCVC = (value: string) => value.replace(/\D/g, '').slice(0, 3);
 
   const handleChange = (
@@ -72,14 +80,16 @@ const PaymentCard: React.FC<PaymentCardInterface> = ({
         formattedValue = formatCVC(value);
         break;
     }
+
     setFieldValue(name, formattedValue);
+    onSubmit({ ...initialValues, [name]: formattedValue }); // Update parent component's card details
   };
 
   return (
     <Formik
       initialValues={initialValues}
       validationSchema={validationSchema}
-      onSubmit={onSubmit}
+      onSubmit={onSubmit} // Submit the form directly
     >
       {({ isValid, dirty, setFieldValue }) => {
         useEffect(() => {
@@ -89,7 +99,6 @@ const PaymentCard: React.FC<PaymentCardInterface> = ({
         return (
           <Form className={styles.customPaymentCardInputField} aria-label="Payment form">
             <div className={styles.customPaymentCardInputFieldInner}>
-              
               <div className={styles.cardNumberContainer}>
                 <label htmlFor="cardNumber" className={styles.visuallyHidden}>
                   Card Number
@@ -110,7 +119,6 @@ const PaymentCard: React.FC<PaymentCardInterface> = ({
                 />
               </div>
 
-              
               <div className={styles.cardValidityContainer}>
                 <div>
                   <label htmlFor="expiryDate" className={styles.visuallyHidden}>
@@ -147,24 +155,20 @@ const PaymentCard: React.FC<PaymentCardInterface> = ({
               </div>
             </div>
 
-
             <ErrorMessage
               name="cardNumber"
               component="span"
               className={styles.errorText}
-         
             />
             <ErrorMessage
               name="expiryDate"
               component="span"
               className={styles.errorText}
-         
             />
             <ErrorMessage
               name="cvc"
               component="span"
               className={styles.errorText}
-            
             />
           </Form>
         );

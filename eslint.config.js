@@ -19,7 +19,13 @@ const config = /** @type {Linter.Config} */ ({
   rules: {
     '@typescript-eslint/explicit-module-boundary-types': 'off',
     '@typescript-eslint/no-unused-vars': ['warn', { argsIgnorePattern: '^_' }],
-    'prettier/prettier': 'error',
+    'prettier/prettier': ['error', { endOfLine: 'auto', printWidth: 80, useTabs: false, tabWidth: 2, semi: true, singleQuote: true, trailingComma: 'es5', jsxSingleQuote: false, bracketSpacing: true, arrowParens: 'always' }],
+    'padding-line-between-statements': [
+      'error',
+      { blankLine: 'always', prev: '*', next: '*' },
+      { blankLine: 'never', prev: 'singleline', next: 'singleline' }
+    ],
+    'no-multiple-empty-lines': ['error', { max: 1, maxEOF: 0 }]
   },
   ignorePatterns: ['node_modules/', 'build/', 'dist/'],
   env: {

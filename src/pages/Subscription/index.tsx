@@ -18,7 +18,7 @@ import { RootState } from '../../redux/store';
 import Shimmer from '../../components/commonUI/Shimmer';
 import { PlanInterface } from '../../utils/types/PlanCard.types';
 
- const Subscription = () => {
+const Subscription = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -28,10 +28,11 @@ import { PlanInterface } from '../../utils/types/PlanCard.types';
 
   const [selectedPlan, setSelectedPlan] = useState<string>(myPlan);
   const [selectedAddOn, setSelectedAddOn] = useState<string>(selectedAddOns);
-
   const [isPaymentFormValid, setIsPaymentFormValid] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [isDataFetching, setIsDataFetching] = useState<boolean>(true);
+
+  const [cardDetails, setCardDetails] = useState({ cardNumber: '', expiryDate: '', cvc: '' });
 
   useEffect(() => {
     setTimeout(() => {
@@ -49,9 +50,19 @@ import { PlanInterface } from '../../utils/types/PlanCard.types';
 
   const handleSubmit = () => {
     setIsLoading(true);
+
     dispatch(updateCompletionStatus({ path: 'subscription', value: true }));
     dispatch(updateMyPlan(selectedPlan));
     dispatch(updateSelectedAddOns(selectedAddOn));
+
+    const subscriptionData = {
+      selectedPlan,
+      selectedAddOn,
+      cardDetails, 
+    };
+
+    localStorage.setItem('subscriptionData', JSON.stringify(subscriptionData));
+
     setTimeout(() => {
       setIsLoading(false);
       navigate('/device');
@@ -113,8 +124,8 @@ import { PlanInterface } from '../../utils/types/PlanCard.types';
               <div className={styles.subscriptioSectionWrapper}>
                 <p className={styles.heading}>Add card details</p>
                 <PaymentCard
-                  onSubmit={handleSubmit}
-                  initialValues={{ cardNumber: '', expiryDate: '', cvc: '' }}
+                  onSubmit={setCardDetails} 
+                  initialValues={cardDetails}
                   onValidityChange={handlePaymentFormValidityChange}
                 />
                 <p className={styles.paymnetSubtext}>
@@ -167,4 +178,4 @@ import { PlanInterface } from '../../utils/types/PlanCard.types';
   );
 };
 
-export default Subscription
+export default Subscription;
