@@ -27,7 +27,8 @@ const DeviceCard: React.FC<DeviceCardProps> = ({ deviceNumber }) => {
     <div className={styles.deviceCard}>
       <h2 className={styles.title}>Device {deviceNumber}</h2>
 
-     
+     <div className={styles.defaultInputGroup} >
+
       <div className={`${styles.inputGroup} ${styles.section}`}>
         <label htmlFor={`deviceType-${deviceNumber}`}>Device type</label>
         <input
@@ -38,7 +39,7 @@ const DeviceCard: React.FC<DeviceCardProps> = ({ deviceNumber }) => {
           placeholder="Enter the device type"
           className={styles.inputField}
           aria-required="true"
-        />
+          />
       </div>
 
       <div className={styles.section}>
@@ -51,7 +52,7 @@ const DeviceCard: React.FC<DeviceCardProps> = ({ deviceNumber }) => {
               onChange={handleToggle}
               aria-checked={isBYOD}
               aria-label={`Toggle if bringing your own device for Device ${deviceNumber}`}
-            />
+              />
             <span className={styles.slider}></span>
           </label>
         </div>
@@ -59,6 +60,7 @@ const DeviceCard: React.FC<DeviceCardProps> = ({ deviceNumber }) => {
           Toggle this on if you're bringing your own device. Leave it off if Drive Mate is to provide the device.
         </p>
       </div>
+              </div>
 
       
       {isBYOD && (
