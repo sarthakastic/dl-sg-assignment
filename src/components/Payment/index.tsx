@@ -21,13 +21,12 @@ const validationSchema = Yup.object().shape({
       return (
         /^(0[1-9]|1[0-2])\/\d{2}$/.test(value) &&
         parseInt(year, 10) >= currentYear &&
-        (parseInt(year, 10) > currentYear ||
-          parseInt(month, 10) >= currentMonth)
+        (parseInt(year, 10) > currentYear || parseInt(month, 10) >= currentMonth)
       );
     }),
   cvc: Yup.string()
     .required('CVC is required')
-    .matches(/^[0-9]{3}$/, 'CVC must be of 3 digits'),
+    .matches(/^[0-9]{3}$/, 'CVC must be 3 digits'),
 });
 
 const PaymentCard: React.FC<PaymentCardInterface> = ({
@@ -45,14 +44,13 @@ const PaymentCard: React.FC<PaymentCardInterface> = ({
     for (let i = 0, len = match.length; i < len; i += 4) {
       parts.push(match.substring(i, i + 4));
     }
-
     return parts.length ? parts.join(' ') : v;
   };
 
-  const formatExpiryDate = (value: string) => {
-    const v = value.replace(/\s+/g, '').replace(/[^0-9]/gi, '');
-    return v.length >= 2 ? `${v.slice(0, 2)}/${v.slice(2, 4)}` : v;
-  };
+  const formatExpiryDate = (value: string) =>
+    value.replace(/\s+/g, '').replace(/[^0-9]/gi, '').length >= 2
+      ? `${value.slice(0, 2)}/${value.slice(2, 4)}`
+      : value;
 
   const formatCVC = (value: string) => value.replace(/\D/g, '').slice(0, 3);
 
@@ -74,7 +72,6 @@ const PaymentCard: React.FC<PaymentCardInterface> = ({
         formattedValue = formatCVC(value);
         break;
     }
-
     setFieldValue(name, formattedValue);
   };
 
@@ -90,57 +87,84 @@ const PaymentCard: React.FC<PaymentCardInterface> = ({
         }, [isValid, dirty]);
 
         return (
-          <Form className={styles.customPaymentCardInputField}>
+          <Form className={styles.customPaymentCardInputField} aria-label="Payment form">
             <div className={styles.customPaymentCardInputFieldInner}>
+              
               <div className={styles.cardNumberContainer}>
+                <label htmlFor="cardNumber" className={styles.visuallyHidden}>
+                  Card Number
+                </label>
                 <span className={styles.iconContainer}>
                   <PaymentCardIcon />
                 </span>
                 <Field
+                  id="cardNumber"
                   name="cardNumber"
                   type="text"
                   placeholder="1234 5678 1234 5678"
                   className={styles.cardNumberInputField}
+                  aria-required="true"
                   disabled={disabled}
                   onChange={(e: any) => handleChange(e, setFieldValue)}
                   maxLength={19}
                 />
               </div>
+
+              
               <div className={styles.cardValidityContainer}>
-                <Field
-                  name="expiryDate"
-                  type="text"
-                  placeholder="MM/YY"
-                  className={styles.cardValidityInputField}
-                  disabled={disabled}
-                  onChange={(e: any) => handleChange(e, setFieldValue)}
-                  maxLength={5}
-                />
-                <Field
-                  name="cvc"
-                  type="text"
-                  placeholder="CVC"
-                  className={styles.cardCvcNumberInputField}
-                  disabled={disabled}
-                  onChange={(e: any) => handleChange(e, setFieldValue)}
-                  maxLength={4}
-                />
+                <div>
+                  <label htmlFor="expiryDate" className={styles.visuallyHidden}>
+                    Expiry Date
+                  </label>
+                  <Field
+                    id="expiryDate"
+                    name="expiryDate"
+                    type="text"
+                    placeholder="MM/YY"
+                    className={styles.cardValidityInputField}
+                    aria-required="true"
+                    disabled={disabled}
+                    onChange={(e: any) => handleChange(e, setFieldValue)}
+                    maxLength={5}
+                  />
+                </div>
+                <div>
+                  <label htmlFor="cvc" className={styles.visuallyHidden}>
+                    CVC
+                  </label>
+                  <Field
+                    id="cvc"
+                    name="cvc"
+                    type="text"
+                    placeholder="CVC"
+                    className={styles.cardCvcNumberInputField}
+                    aria-required="true"
+                    disabled={disabled}
+                    onChange={(e: any) => handleChange(e, setFieldValue)}
+                    maxLength={4}
+                  />
+                </div>
               </div>
             </div>
+
+
             <ErrorMessage
               name="cardNumber"
               component="span"
               className={styles.errorText}
+         
             />
             <ErrorMessage
               name="expiryDate"
               component="span"
               className={styles.errorText}
+         
             />
             <ErrorMessage
               name="cvc"
               component="span"
               className={styles.errorText}
+            
             />
           </Form>
         );

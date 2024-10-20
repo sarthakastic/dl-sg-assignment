@@ -18,7 +18,7 @@ import { RootState } from '../../redux/store';
 import Shimmer from '../../components/commonUI/Shimmer';
 import { PlanInterface } from '../../utils/types/PlanCard.types';
 
-export const Subscription = () => {
+ const Subscription = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -166,3 +166,5 @@ export const Subscription = () => {
     </div>
   );
 };
+
+export default Subscription

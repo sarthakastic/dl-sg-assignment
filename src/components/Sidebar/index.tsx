@@ -11,8 +11,21 @@ const Sidebar = () => {
 
   const { routes } = useSelector((state: RootState) => state.routeStatus);
 
+  const handleNavigation = (path: string) => {
+    navigate(path.toLowerCase());
+  };
+
+  const isPathValid = routes.some(
+    (data) => `/${data?.path.toLowerCase()}` === location.pathname
+  );
+
+  
+  if (!isPathValid) {
+    return null; 
+  }
+
   return (
-    <div className={styles.sidebarContainer}>
+    <div className={styles.sidebarContainer} role="navigation" aria-label="Sidebar Navigation">
       <ul>
         {routes.map((data) => {
           const isActive = location.pathname === `/${data?.path.toLowerCase()}`;
@@ -21,15 +34,22 @@ const Sidebar = () => {
           return (
             <li
               key={data?.id}
-              onClick={() => navigate(data?.path.toLowerCase())}
-              className={`
-                ${styles.tabLink} 
+              onClick={() => handleNavigation(data?.path)}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault();
+                  handleNavigation(data?.path);
+                }
+              }}
+              tabIndex={0} 
+              role="button" 
+              aria-pressed={isActive} 
+              className={`${styles.tabLink} 
                 ${isActive ? styles.activeTab : ''} 
-             ${isCompleted ? '' : styles.grayTab}
-              `}
+                ${isCompleted ? '' : styles.grayTab}`}
             >
               {pathToTabName(data?.path)}
-              {data?.completionStatus && <TickIcon />}
+              {isCompleted && <TickIcon />}
             </li>
           );
         })}

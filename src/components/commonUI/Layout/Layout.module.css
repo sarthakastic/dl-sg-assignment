@@ -6,6 +6,10 @@
   margin: 0px 12.5rem;
 }
 
+.notFoundContainer{
+  margin: 4rem 0;
+}
+
 @media screen and (max-width: 1200px) {
   .mainContentContainer {
     flex-direction: column;
