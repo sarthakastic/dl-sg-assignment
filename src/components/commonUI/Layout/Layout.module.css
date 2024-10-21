@@ -1,6 +1,7 @@
 .mainContentContainer {
   min-height: calc(100dvh - 11rem);
   display: flex;
+  justify-content: center;
   background-color: var(--foreground-color);
   padding: 4rem 0 7.5rem;
   margin: 0px 12.5rem;
@@ -8,6 +9,10 @@
 
 .dynamicContainer {
   width: 100%;
+}
+
+.notFoundContainer {
+  margin: 4rem 0;
 }
 
 @media screen and (max-width: 1200px) {

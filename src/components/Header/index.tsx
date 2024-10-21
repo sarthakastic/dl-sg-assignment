@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { NavLink } from 'react-router-dom';
 import logo from '../../assets/images/logo.png';
 import avatar from '../../assets/images/avatar.jpg';
@@ -8,62 +8,77 @@ import LazyImage from '../commonUI/LazyImage';
 
 export default function Header() {
   const [sidebarActive, setSidebarActive] = useState(false);
+  const hamburgerRef = useRef<HTMLButtonElement>(null);
 
-  const toggleSidebar = () => {
-    setSidebarActive(!sidebarActive);
-  };
+  const toggleSidebar = () => setSidebarActive(!sidebarActive);
+
+  
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        hamburgerRef.current &&
+        !hamburgerRef.current.contains(event.target as Node)
+      ) {
+        setSidebarActive(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
 
   return (
     <header className={styles.headerContainer}>
-      <div
-        className={`${styles.hamburger} ${
-          sidebarActive ? styles.hamburgerActive : ''
-        }`}
+      
+      <button
+        ref={hamburgerRef}
+        className={`${styles.hamburger} ${sidebarActive ? styles.hamburgerActive : ''}`}
         onClick={toggleSidebar}
+        aria-label={sidebarActive ? 'Close menu' : 'Open menu'}
+        aria-expanded={sidebarActive}
+        aria-controls="navLinks"
       >
         <span></span>
         <span></span>
         <span></span>
-      </div>
+      </button>
 
+      
       <NavLink to="/" className={styles.logo}>
-        <LazyImage src={logo} alt="Logo" />
+        <LazyImage src={logo} alt="Company Logo" />
       </NavLink>
 
-      <div
-        className={`${styles.navLinkCollapse} ${
-          sidebarActive ? styles['navLinkCollapseActive'] : ''
-        }`}
+      
+      <nav
+        id="navLinks"
+        className={`${styles.navLinkCollapse} ${sidebarActive ? styles.navLinkCollapseActive : ''}`}
+        aria-hidden={!sidebarActive}
       >
-        <NavLink to="/learn-more" className={styles.navLinkItem}>
+        <NavLink to="/" className={styles.navLinkItem}>
           Learn more
         </NavLink>
-        <NavLink to="/subscription" className={styles.navLinkItem}>
+        <NavLink to="/" className={styles.navLinkItem}>
           List your car
         </NavLink>
-        <NavLink to="/inbox" className={styles.navLinkItem}>
+        <NavLink to="/" className={styles.navLinkItem}>
           Inbox
         </NavLink>
-      </div>
+      </nav>
 
+      
       <div className={styles.navItemContainer}>
-        <NavLink to="/learn-more" className={styles.navItem}>
+        <NavLink to="/" className={styles.navItem}>
           Learn more
         </NavLink>
-        <NavLink to="/subscription" className={styles.navItem}>
+        <NavLink to="/" className={styles.navItem}>
           List your car
         </NavLink>
-        <NavLink to="/inbox" className={styles.navItem}>
+        <NavLink to="/" className={styles.navItem}>
           Inbox
         </NavLink>
 
-        <NavLink to="/profile" className={styles.profilePicture}>
-          <LazyImage
-            height={'2.5rem'}
-            width={'2.5rem'}
-            src={avatar}
-            alt="Avatar"
-          />
+      
+        <NavLink to="/" className={styles.profilePicture} aria-label="Go to profile">
+          <LazyImage height="2.5rem" width="2.5rem" src={avatar} alt="User Avatar" />
         </NavLink>
       </div>
     </header>

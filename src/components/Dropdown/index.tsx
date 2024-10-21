@@ -18,26 +18,46 @@ const Dropdown = () => {
     setSelectedOption(pathToTabName(currentPath));
   }, [location]);
 
-  const toggleDropdown = () => setIsOpen(!isOpen);
+  const toggleDropdown = () => setIsOpen((prev) => !prev);
 
   const handleOptionSelect = (path: string) => {
     navigate(`/${path}`);
     setIsOpen(false);
   };
 
+  const isPathValid = routes.some(
+    (data) => `/${data?.path.toLowerCase()}` === location.pathname
+  );
+
+  if (!isPathValid) {
+    return null; 
+  }
+
   return (
-    <div className={styles.dropdown}>
-      <button className={styles.button} onClick={toggleDropdown}>
+    <div className={styles.dropdown} role="combobox" aria-expanded={isOpen} aria-haspopup="true" aria-label="Select an option">
+      <button
+        className={styles.button}
+        onClick={toggleDropdown}
+        aria-controls="dropdown-menu"
+        aria-activedescendant={selectedOption}
+        aria-haspopup={true}
+      >
         {selectedOption || 'Select an Option'}
         <ArrowDownIcon />
       </button>
 
-      <div className={`${styles.menu} ${isOpen ? styles.show : ''}`}>
+      <div
+        id="dropdown-menu"
+        className={`${styles.menu} ${isOpen ? styles.show : ''}`}
+        role="listbox"
+      >
         {routes.map((option, index) => (
           <div
             key={index}
+            role="option"
             className={styles['menu-item']}
             onClick={() => handleOptionSelect(option?.path)}
+            aria-selected={selectedOption === pathToTabName(option?.path)}
           >
             {pathToTabName(option?.path)}
             {option?.completionStatus && <TickIcon />}

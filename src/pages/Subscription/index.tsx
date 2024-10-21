@@ -17,8 +17,9 @@ import {
 import { RootState } from '../../redux/store';
 import Shimmer from '../../components/commonUI/Shimmer';
 import { PlanInterface } from '../../utils/types/PlanCard.types';
+import { showToaster } from '../../redux/slices/toasterSlice';
 
-export const Subscription = () => {
+const Subscription = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -28,15 +29,17 @@ export const Subscription = () => {
 
   const [selectedPlan, setSelectedPlan] = useState<string>(myPlan);
   const [selectedAddOn, setSelectedAddOn] = useState<string>(selectedAddOns);
-
   const [isPaymentFormValid, setIsPaymentFormValid] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [isDataFetching, setIsDataFetching] = useState<boolean>(true);
 
+  const [cardDetails, setCardDetails] = useState({ cardNumber: '', expiryDate: '', cvc: '' });
+
   useEffect(() => {
-    setTimeout(() => {
+   const timer = setTimeout(() => {
       setIsDataFetching(false);
     }, 1000);
+    return () => clearTimeout(timer);
   }, []);
 
   const handlePlanSelect = (plan: PlanInterface) => {
@@ -49,11 +52,22 @@ export const Subscription = () => {
 
   const handleSubmit = () => {
     setIsLoading(true);
+
     dispatch(updateCompletionStatus({ path: 'subscription', value: true }));
     dispatch(updateMyPlan(selectedPlan));
     dispatch(updateSelectedAddOns(selectedAddOn));
+
+    const subscriptionData = {
+      selectedPlan,
+      selectedAddOn,
+      cardDetails, 
+    };
+
+    localStorage.setItem('subscriptionData', JSON.stringify(subscriptionData));
+
     setTimeout(() => {
       setIsLoading(false);
+      dispatch(showToaster({ type: "success", message: "Subscription activated successful!" }));
       navigate('/device');
     }, 1000);
   };
@@ -113,8 +127,8 @@ export const Subscription = () => {
               <div className={styles.subscriptioSectionWrapper}>
                 <p className={styles.heading}>Add card details</p>
                 <PaymentCard
-                  onSubmit={handleSubmit}
-                  initialValues={{ cardNumber: '', expiryDate: '', cvc: '' }}
+                  onSubmit={setCardDetails} 
+                  initialValues={cardDetails}
                   onValidityChange={handlePaymentFormValidityChange}
                 />
                 <p className={styles.paymnetSubtext}>
@@ -166,3 +180,5 @@ export const Subscription = () => {
     </div>
   );
 };
+
+export default Subscription;
