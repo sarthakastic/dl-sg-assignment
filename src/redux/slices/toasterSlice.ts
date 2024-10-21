@@ -1,5 +1,11 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
+interface ToasterState {
+  show: boolean;
+  type: 'success' | 'error';
+  message: string;
+}
+
 const initialState: ToasterState = {
   show: false,
   type: 'success',
