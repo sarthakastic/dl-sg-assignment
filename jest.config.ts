@@ -13,12 +13,10 @@ const config: Config.InitialOptions = {
   },
   globals: {
     'ts-jest': {
-      tsconfig: 'tsconfig.json'
-    }
-  }
+      tsconfig: 'tsconfig.json',
+    },
+  },
+  reporters: ['default', '<rootDir>/customReporter.js'],
 };
 
 export default config;
-
-
-  
