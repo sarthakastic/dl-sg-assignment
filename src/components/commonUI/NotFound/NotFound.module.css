@@ -1,41 +1,40 @@
-.notFoundContainer{
-    width: 50vw;
-    margin: auto;
-    height: 60svh;
-    background-color: var(--accent-color);
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
-    border-radius: 4px;
+.notFoundContainer {
+  width: 50vw;
+  margin: auto;
+  height: 60svh;
+  background-color: var(--accent-color);
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 4px;
 }
 
 .linkText {
-    color: var(--primary-color);
-    font-weight: 700;
-    transition: 200ms all ease-in-out;
-    text-decoration: underline;
-    margin-top: 1rem;
-  }
-  
-  .linkText:hover {
-    color: var(--secondary-color);
-  }
+  color: var(--primary-color);
+  font-weight: 700;
+  transition: 200ms all ease-in-out;
+  text-decoration: underline;
+  margin-top: 1rem;
+  cursor: pointer;
+}
+
+.linkText:hover {
+  color: var(--secondary-color);
+}
 
 .subText,
-  .text{
-    font-size: 2rem;
-    font-weight: 900;
-    color: var(--primary-color);
-    padding: 0;
-    margin: 0;
-    text-align: center;
-  }
-
+.text {
+  font-size: 2rem;
+  font-weight: 900;
+  color: var(--primary-color);
+  padding: 0;
+  margin: 0;
+  text-align: center;
+}
 
 @media screen and (max-width: 767px) {
-    .notFoundContainer{
-        width: 90vw;
-       
-    }
+  .notFoundContainer {
+    width: 90vw;
+  }
 }
