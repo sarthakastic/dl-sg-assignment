@@ -40,6 +40,7 @@
 @media screen and (max-width: 1200px) {
   .container {
     max-width: 100%;
+    width: 100%;
   }
 
   .sectionContent,

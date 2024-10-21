@@ -14,7 +14,7 @@ const MainContent = (props: Props) => {
       <div className={styles.dropdownWrapper}>
         <Dropdown />
       </div>
-      {props?.children}
+      <div className={styles.dynamicContainer}>{props?.children}</div>
     </div>
   );
 };
