@@ -9,6 +9,7 @@ const Spinner = ({ size = 50 }: { size: number }) => {
         height: size,
         borderWidth: 5,
       }}
+      data-testid="spinner"
     />
   );
 };

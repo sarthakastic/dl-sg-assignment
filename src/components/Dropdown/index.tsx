@@ -40,6 +40,7 @@ const Dropdown = () => {
         onClick={toggleDropdown}
         aria-controls="dropdown-menu"
         aria-activedescendant={selectedOption}
+        aria-haspopup={true}
       >
         {selectedOption || 'Select an Option'}
         <ArrowDownIcon />
