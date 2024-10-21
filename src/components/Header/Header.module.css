@@ -82,6 +82,8 @@
   align-items: center;
   transition: 200ms all ease-in-out;
   clip-path: inset(5%);
+  background-color: transparent;
+  border: none;
 }
 
 .hamburger span {
