@@ -84,12 +84,14 @@ const DeviceCard: React.FC<DeviceCardProps> = ({ deviceNumber }) => {
               <div className={styles.imagePreviewContainer}>
                 <LazyImage
                   src={previewUrl}
+                  id='preview-img'
                   alt={`Preview of uploaded device for Device ${deviceNumber}`}
                   className={styles.imagePreview}
                 />
                 <button
                   onClick={handleDeleteImage}
                   className={styles.deleteButton}
+                  role='delete-btn'
                   aria-label="Remove uploaded device image"
                 >
                   X

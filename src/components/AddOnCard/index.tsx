@@ -18,6 +18,14 @@ const AddOnCard = ({
   const handleKeyPress = (e: KeyboardEvent<HTMLDivElement>) => {
     if (e.key === 'Enter' || e.key === ' ') {
       e.preventDefault();
+      if (addOnInfo.isActive) {
+        onSelect();
+      }
+    }
+  };
+
+  const handleClick = () => {
+    if (addOnInfo.isActive) {
       onSelect();
     }
   };
@@ -25,10 +33,8 @@ const AddOnCard = ({
   return (
     <div
       className={styles.addOnContainer}
-      role="radio"
-      aria-checked={addOnInfo?.title === checkedAddOn}
       tabIndex={0}
-      onClick={onSelect}
+      onClick={handleClick}
       onKeyDown={handleKeyPress}
       aria-labelledby={`addon-label-${addOnInfo.id}`}
       aria-disabled={!addOnInfo.isActive}
@@ -59,6 +65,7 @@ const AddOnCard = ({
           className={styles.radioButton}
           disabled={!addOnInfo.isActive}
           aria-label={`Select ${addOnInfo.title} for ${addOnInfo.price} per month`}
+          aria-checked={addOnInfo?.title === checkedAddOn}
         />
       </div>
     </div>
