@@ -7,7 +7,7 @@ import { hideToaster } from '../../redux/slices/toasterSlice';
 
 const mockStore = configureStore([]);
 
-const renderToaster = (initialState:any) => {
+const renderToaster = (initialState: any) => {
   const store = mockStore(initialState);
   render(
     <Provider store={store}>
@@ -47,7 +47,7 @@ describe('Toaster Component', () => {
   });
 
   test('hides toaster after 5 seconds', () => {
-    jest.useFakeTimers(); 
+    jest.useFakeTimers();
     const initialState = {
       toast: {
         show: true,
@@ -64,12 +64,12 @@ describe('Toaster Component', () => {
     );
 
     expect(screen.getByRole('alert')).toBeInTheDocument();
-    
+
     jest.advanceTimersByTime(5000);
 
     const actions = store.getActions();
     expect(actions).toContainEqual(hideToaster());
-    jest.useRealTimers(); 
+    jest.useRealTimers();
   });
 
   test('hides toaster when close button is clicked', () => {

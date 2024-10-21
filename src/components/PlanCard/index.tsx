@@ -4,7 +4,7 @@ import styles from './PlanCard.module.css';
 const PlanCard = ({ planInfo, isSelected, onSelect }: PlanCardInterface) => {
   const handleKeyPress = (event: React.KeyboardEvent<HTMLDivElement>) => {
     if (event.key === 'Enter' || event.key === ' ') {
-      event.preventDefault(); 
+      event.preventDefault();
       onSelect();
     }
   };
@@ -16,9 +16,9 @@ const PlanCard = ({ planInfo, isSelected, onSelect }: PlanCardInterface) => {
       }`}
       onClick={onSelect}
       onKeyDown={handleKeyPress}
-      tabIndex={0} 
-      role="button" 
-      aria-pressed={isSelected} 
+      tabIndex={0}
+      role="button"
+      aria-pressed={isSelected}
     >
       <p className={styles.title}>{planInfo.title}</p>
 
@@ -26,7 +26,7 @@ const PlanCard = ({ planInfo, isSelected, onSelect }: PlanCardInterface) => {
         <p className={styles.description} key={index}>
           <img
             src={desc?.icon}
-            alt={ `Description icon ${index + 1}`} 
+            alt={`Description icon ${index + 1}`}
             className={styles.icon}
           />{' '}
           <span>{desc?.text}</span>

@@ -1,45 +1,35 @@
-import { Linter } from 'eslint';
+import tsParser from '@typescript-eslint/parser';
+import tsPlugin from '@typescript-eslint/eslint-plugin';
+import prettierPlugin from 'eslint-plugin-prettier';
 
-const config = /** @type {Linter.Config} */ ({
-  parser: '@typescript-eslint/parser',
-  plugins: ['react', 'react-hooks', 'jsx-a11y', '@typescript-eslint'],
-  extends: [
-    'eslint:recommended',
-    'plugin:react/recommended',
-    'plugin:react-hooks/recommended',
-    'plugin:jsx-a11y/recommended',
-    'plugin:@typescript-eslint/recommended',
-    'prettier',
-  ],
-  settings: {
-    react: {
-      version: 'detect',
+const config = [
+  {
+    files: ['*.ts', '*.tsx'],
+    languageOptions: {
+      parser: tsParser,
+      parserOptions: {
+        ecmaVersion: 'latest',
+        sourceType: 'module',
+        ecmaFeatures: {
+          jsx: true,
+        },
+      },
+      globals: {
+        window: true,
+        document: true,
+        console: true,
+      },
+    },
+    plugins: {
+      '@typescript-eslint': tsPlugin,
+      prettier: prettierPlugin, // Ensure this line is present
+    },
+    rules: {
+      'prettier/prettier': 'error', // Ensure this line is present
+      '@typescript-eslint/no-unused-vars': 'warn',
+      semi: ['error', 'always'],
     },
   },
-  rules: {
-    '@typescript-eslint/explicit-module-boundary-types': 'off',
-    '@typescript-eslint/no-unused-vars': ['warn', { argsIgnorePattern: '^_' }],
-    'prettier/prettier': ['error', { endOfLine: 'auto', printWidth: 80, useTabs: false, tabWidth: 2, semi: true, singleQuote: true, trailingComma: 'es5', jsxSingleQuote: false, bracketSpacing: true, arrowParens: 'always' }],
-    'padding-line-between-statements': [
-      'error',
-      { blankLine: 'always', prev: '*', next: '*' },
-      { blankLine: 'never', prev: 'singleline', next: 'singleline' }
-    ],
-    'no-multiple-empty-lines': ['error', { max: 1, maxEOF: 0 }]
-  },
-  ignorePatterns: ['node_modules/', 'build/', 'dist/'],
-  env: {
-    browser: true,
-    es2021: true,
-    node: true,
-  },
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    ecmaFeatures: {
-      jsx: true,
-    },
-  },
-});
+];
 
 export default config;

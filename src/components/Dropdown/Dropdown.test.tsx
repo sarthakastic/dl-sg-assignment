@@ -12,8 +12,7 @@ jest.mock('react-router-dom', () => ({
 }));
 
 describe('Dropdown Component', () => {
-  let store:any;
-
+  let store: any;
 
   beforeEach(() => {
     store = mockStore({
@@ -33,10 +32,7 @@ describe('Dropdown Component', () => {
         ],
       },
     });
-
   });
-
-
 
   it('does not render when the path is invalid', () => {
     store = mockStore({

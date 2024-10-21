@@ -12,7 +12,6 @@ export default function Header() {
 
   const toggleSidebar = () => setSidebarActive(!sidebarActive);
 
-  
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (
@@ -28,7 +27,6 @@ export default function Header() {
 
   return (
     <header className={styles.headerContainer}>
-      
       <button
         ref={hamburgerRef}
         className={`${styles.hamburger} ${sidebarActive ? styles.hamburgerActive : ''}`}
@@ -42,12 +40,10 @@ export default function Header() {
         <span></span>
       </button>
 
-      
       <NavLink to="/" className={styles.logo}>
         <LazyImage src={logo} alt="Company Logo" />
       </NavLink>
 
-      
       <nav
         id="navLinks"
         className={`${styles.navLinkCollapse} ${sidebarActive ? styles.navLinkCollapseActive : ''}`}
@@ -64,7 +60,6 @@ export default function Header() {
         </NavLink>
       </nav>
 
-      
       <div className={styles.navItemContainer}>
         <NavLink to="/" className={styles.navItem}>
           Learn more
@@ -76,9 +71,17 @@ export default function Header() {
           Inbox
         </NavLink>
 
-      
-        <NavLink to="/" className={styles.profilePicture} aria-label="Go to profile">
-          <LazyImage height="2.5rem" width="2.5rem" src={avatar} alt="User Avatar" />
+        <NavLink
+          to="/"
+          className={styles.profilePicture}
+          aria-label="Go to profile"
+        >
+          <LazyImage
+            height="2.5rem"
+            width="2.5rem"
+            src={avatar}
+            alt="User Avatar"
+          />
         </NavLink>
       </div>
     </header>

@@ -1,12 +1,14 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import styles from "./Toaster.module.css";
-import { AppDispatch, RootState } from "../../redux/store";
-import { hideToaster } from "../../redux/slices/toasterSlice";
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import styles from './Toaster.module.css';
+import { AppDispatch, RootState } from '../../redux/store';
+import { hideToaster } from '../../redux/slices/toasterSlice';
 
 const Toaster: React.FC = () => {
   const dispatch: AppDispatch = useDispatch();
-  const { show, type, message } = useSelector((state: RootState) => state.toast);
+  const { show, type, message } = useSelector(
+    (state: RootState) => state.toast
+  );
 
   useEffect(() => {
     if (show) {

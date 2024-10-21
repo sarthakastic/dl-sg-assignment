@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import { MemoryRouter, Route, Routes } from 'react-router-dom';
 import DynamicSection from './index';
-import '@testing-library/jest-dom'; 
+import '@testing-library/jest-dom';
 
 const renderWithRouter = (ui: React.ReactNode, initialRoute: string) => {
   return render(

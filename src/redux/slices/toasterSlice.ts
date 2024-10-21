@@ -1,25 +1,18 @@
-// src/redux/slices/toasterSlice.ts
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-
-interface ToasterState {
-  show: boolean;
-  type: "success" | "error";
-  message: string;
-}
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 const initialState: ToasterState = {
   show: false,
-  type: "success",
-  message: "",
+  type: 'success',
+  message: '',
 };
 
 const toasterSlice = createSlice({
-  name: "toaster",
+  name: 'toaster',
   initialState,
   reducers: {
     showToaster: (
       state,
-      action: PayloadAction<{ type: "success" | "error"; message: string }>
+      action: PayloadAction<{ type: 'success' | 'error'; message: string }>
     ) => {
       state.show = true;
       state.type = action.payload.type;
@@ -27,7 +20,7 @@ const toasterSlice = createSlice({
     },
     hideToaster: (state) => {
       state.show = false;
-      state.message = "";
+      state.message = '';
     },
   },
 });

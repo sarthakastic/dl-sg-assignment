@@ -6,7 +6,7 @@ describe('PlanCard Component', () => {
   const mockSelect = jest.fn();
 
   const planInfo = {
-    id:1,
+    id: 1,
     title: 'Premium Plan',
     description: [
       { icon: 'icon1.png', text: 'Access to all features' },

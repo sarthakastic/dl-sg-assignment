@@ -6,8 +6,6 @@ import NotFound from '../components/commonUI/NotFound';
 const Devices = lazy(() => import('../pages/Devices'));
 const Subscription = lazy(() => import('../pages/Subscription'));
 
-
-
 function Routing() {
   return (
     <Suspense fallback={<Shimmer />}>
@@ -16,7 +14,6 @@ function Routing() {
         <Route path="/device" element={<Devices />} />
         <Route path="/subscription" element={<Subscription />} />
 
-    
         {[
           'location',
           'about',
@@ -28,10 +25,17 @@ function Routing() {
           'insurance',
           'early-access',
         ].map((path) => (
-          <Route key={path} path={`/${path}`} element={<NotFound text='503' subtext='Page under maintenance' />} />
+          <Route
+            key={path}
+            path={`/${path}`}
+            element={<NotFound text="503" subtext="Page under maintenance" />}
+          />
         ))}
 
-        <Route path="*" element={<NotFound text='404' subtext='Page not found' />} />
+        <Route
+          path="*"
+          element={<NotFound text="404" subtext="Page not found" />}
+        />
       </Routes>
     </Suspense>
   );

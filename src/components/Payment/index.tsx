@@ -23,7 +23,8 @@ const validationSchema = Yup.object().shape({
       return (
         /^(0[1-9]|1[0-2])\/\d{2}$/.test(value) &&
         parseInt(year, 10) >= currentYear &&
-        (parseInt(year, 10) > currentYear || parseInt(month, 10) >= currentMonth)
+        (parseInt(year, 10) > currentYear ||
+          parseInt(month, 10) >= currentMonth)
       );
     }),
   cvc: Yup.string()
@@ -50,16 +51,16 @@ const PaymentCard: React.FC<PaymentCardInterface> = ({
   };
 
   const formatExpiryDate = (value: string) => {
-    const sanitizedValue = value.replace(/\D/g, ''); 
-    if (sanitizedValue.length === 0) return ''; 
-    if (sanitizedValue.length <= 2) return sanitizedValue; 
-  
+    const sanitizedValue = value.replace(/\D/g, '');
+    if (sanitizedValue.length === 0) return '';
+    if (sanitizedValue.length <= 2) return sanitizedValue;
+
     const month = sanitizedValue.slice(0, 2);
     const year = sanitizedValue.slice(2, 4);
-  
+
     return `${month}/${year}`;
   };
-  
+
   const formatCVC = (value: string) => value.replace(/\D/g, '').slice(0, 3);
 
   const handleChange = (
@@ -97,10 +98,12 @@ const PaymentCard: React.FC<PaymentCardInterface> = ({
         }, [isValid, dirty]);
 
         return (
-          <Form className={styles.customPaymentCardInputField} aria-label="Payment form">
+          <Form
+            className={styles.customPaymentCardInputField}
+            aria-label="Payment form"
+          >
             <div className={styles.customPaymentCardInputFieldInner}>
               <div className={styles.cardNumberContainer}>
-               
                 <span className={styles.iconContainer}>
                   <PaymentCardIcon />
                 </span>
@@ -119,7 +122,6 @@ const PaymentCard: React.FC<PaymentCardInterface> = ({
 
               <div className={styles.cardValidityContainer}>
                 <div>
-                 
                   <Field
                     id="expiryDate"
                     name="expiryDate"
@@ -133,7 +135,6 @@ const PaymentCard: React.FC<PaymentCardInterface> = ({
                   />
                 </div>
                 <div>
-                 
                   <Field
                     id="cvc"
                     name="cvc"

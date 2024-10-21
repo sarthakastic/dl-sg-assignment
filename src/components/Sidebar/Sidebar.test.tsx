@@ -24,18 +24,18 @@ const renderSidebar = (initialState: Partial<RootState>) => {
       ],
     },
     plan: {
-        myPlan:'',
-        selectedAddOns:''
-    }, 
-    toast: {
-        message:'',
-        show:false,
-        type:'error'
+      myPlan: '',
+      selectedAddOns: '',
     },
-    _persist: { 
-        version: -1,
-        rehydrated: false,
-      },
+    toast: {
+      message: '',
+      show: false,
+      type: 'error',
+    },
+    _persist: {
+      version: -1,
+      rehydrated: false,
+    },
     ...initialState,
   });
 
@@ -87,27 +87,35 @@ describe('Sidebar Component', () => {
 
   test('applies activeTab style to the active route', () => {
     renderSidebar({});
-    
+
     const dashboardTab = screen.getByText('Dashboard');
     expect(dashboardTab).toHaveClass('activeTab');
   });
 
   test('applies grayTab style to incomplete routes', () => {
     renderSidebar({});
-    
+
     const settingsTab = screen.getByText('Settings');
     expect(settingsTab).toHaveClass('grayTab');
   });
 
- 
   test('does not render Sidebar for invalid path', () => {
     render(
-      <Provider store={mockStore({ routeStatus: { routes: [] }, plan: {myPlan:'',selectedAddOns:''}, toast: {
-        message:"",show:false
-,type:'error'      },_persist: {
-    version: -1,
-    rehydrated: false,
-  }, })}>
+      <Provider
+        store={mockStore({
+          routeStatus: { routes: [] },
+          plan: { myPlan: '', selectedAddOns: '' },
+          toast: {
+            message: '',
+            show: false,
+            type: 'error',
+          },
+          _persist: {
+            version: -1,
+            rehydrated: false,
+          },
+        })}
+      >
         <MemoryRouter initialEntries={['/unknown']}>
           <Routes>
             <Route path="*" element={<Sidebar />} />

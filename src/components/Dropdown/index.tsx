@@ -30,11 +30,17 @@ const Dropdown = () => {
   );
 
   if (!isPathValid) {
-    return null; 
+    return null;
   }
 
   return (
-    <div className={styles.dropdown} role="combobox" aria-expanded={isOpen} aria-haspopup="true" aria-label="Select an option">
+    <div
+      className={styles.dropdown}
+      role="combobox"
+      aria-expanded={isOpen}
+      aria-haspopup="true"
+      aria-label="Select an option"
+    >
       <button
         className={styles.button}
         onClick={toggleDropdown}

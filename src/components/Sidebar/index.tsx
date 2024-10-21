@@ -19,13 +19,16 @@ const Sidebar = () => {
     (data) => `/${data?.path.toLowerCase()}` === location.pathname
   );
 
-  
   if (!isPathValid) {
-    return null; 
+    return null;
   }
 
   return (
-    <div className={styles.sidebarContainer} role="navigation" aria-label="Sidebar Navigation">
+    <div
+      className={styles.sidebarContainer}
+      role="navigation"
+      aria-label="Sidebar Navigation"
+    >
       <ul>
         {routes.map((data) => {
           const isActive = location.pathname === `/${data?.path.toLowerCase()}`;
@@ -41,9 +44,9 @@ const Sidebar = () => {
                   handleNavigation(data?.path);
                 }
               }}
-              tabIndex={0} 
-              role="button" 
-              aria-pressed={isActive} 
+              tabIndex={0}
+              role="button"
+              aria-pressed={isActive}
               className={`${styles.tabLink} 
                 ${isActive ? styles.activeTab : ''} 
                 ${isCompleted ? '' : styles.grayTab}`}

@@ -1,7 +1,7 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import Header from './index';
-import '@testing-library/jest-dom'; 
+import '@testing-library/jest-dom';
 
 describe('Header Component', () => {
   const renderHeader = () =>
@@ -11,7 +11,6 @@ describe('Header Component', () => {
       </MemoryRouter>
     );
 
-    
   it('closes sidebar when clicking outside the hamburger button', () => {
     renderHeader();
 

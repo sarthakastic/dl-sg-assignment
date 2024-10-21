@@ -33,10 +33,14 @@ const Subscription = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [isDataFetching, setIsDataFetching] = useState<boolean>(true);
 
-  const [cardDetails, setCardDetails] = useState({ cardNumber: '', expiryDate: '', cvc: '' });
+  const [cardDetails, setCardDetails] = useState({
+    cardNumber: '',
+    expiryDate: '',
+    cvc: '',
+  });
 
   useEffect(() => {
-   const timer = setTimeout(() => {
+    const timer = setTimeout(() => {
       setIsDataFetching(false);
     }, 1000);
     return () => clearTimeout(timer);
@@ -60,14 +64,19 @@ const Subscription = () => {
     const subscriptionData = {
       selectedPlan,
       selectedAddOn,
-      cardDetails, 
+      cardDetails,
     };
 
     localStorage.setItem('subscriptionData', JSON.stringify(subscriptionData));
 
     setTimeout(() => {
       setIsLoading(false);
-      dispatch(showToaster({ type: "success", message: "Subscription activated successful!" }));
+      dispatch(
+        showToaster({
+          type: 'success',
+          message: 'Subscription activated successful!',
+        })
+      );
       navigate('/device');
     }, 1000);
   };
@@ -127,7 +136,7 @@ const Subscription = () => {
               <div className={styles.subscriptioSectionWrapper}>
                 <p className={styles.heading}>Add card details</p>
                 <PaymentCard
-                  onSubmit={setCardDetails} 
+                  onSubmit={setCardDetails}
                   initialValues={cardDetails}
                   onValidityChange={handlePaymentFormValidityChange}
                 />

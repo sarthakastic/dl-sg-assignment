@@ -4,8 +4,8 @@ import Spinner from './index';
 describe('Spinner Component', () => {
   test('renders with default size', () => {
     render(<Spinner size={50} />);
-    
-    const spinnerElement = screen.getByTestId('spinner'); 
+
+    const spinnerElement = screen.getByTestId('spinner');
 
     expect(spinnerElement).toBeInTheDocument();
     expect(spinnerElement).toHaveStyle({
@@ -18,8 +18,8 @@ describe('Spinner Component', () => {
   test('renders with custom size', () => {
     const customSize = 75;
     render(<Spinner size={customSize} />);
-    
-    const spinnerElement = screen.getByTestId('spinner'); 
+
+    const spinnerElement = screen.getByTestId('spinner');
 
     expect(spinnerElement).toBeInTheDocument();
     expect(spinnerElement).toHaveStyle({

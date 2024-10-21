@@ -31,6 +31,7 @@ npm run test
 - react-router-dom : for validation
 - redux-persist : for persisting values on reload
 - yup : form validation
+- prettier & esLint : for code formatting
 
 ## Design Choices
 

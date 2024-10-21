@@ -2,7 +2,6 @@ import { render, screen, fireEvent } from '@testing-library/react';
 import Button from './index';
 import { ButtonInterface } from '../../../utils/types/Button.types';
 
-
 jest.mock('./Button.module.css', () => ({
   button: 'mocked-button-class',
   outlined: 'mocked-outlined-class',
