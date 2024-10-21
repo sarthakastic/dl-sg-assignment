@@ -27,10 +27,10 @@ npm run test
 ## Libraries Used
 
 - formik : for form management
-- react-redux: for state management
-- react-router-dom: for validation
-- redux-persist: for persisting values on reload
-- yup : form form validation
+- react-redux : for state management
+- react-router-dom : for validation
+- redux-persist : for persisting values on reload
+- yup : form validation
 
 ## Design Choices
 
